@@ -4,37 +4,43 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>document</title>
+    <title>prompt</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
     <!--    <link rel="stylesheet" href="../css/init.css">-->
     <link rel="stylesheet" href="./css/styles.css">
+    <script type="text/JavaScript">
+        let name = prompt("당신은 누구십니까?");
+        let age =prompt("몇 살 이십니까?")
+        alert( name + "님 안녕하세요. ~" )
+        console.log(name + "님 반가워요.");
+        document.write( `<h1> ${name}님 안녕하세요!!!</h1><h2> ${age}살 이시겠군요!` )
+    </script>
 </head>
 
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>prompt 및 기타 등등</h1>
         </div>
     </header>
     <content class="t_row">
-        <div class="t_cell"></div>
+        <div class="t_cell">
+            <div id="ex">
+
+            </div>
+        </div>
     </content>
     <footer class="t_row">
        <div class="t_cell">
         <hr>
         <p>
-            <button type="button" onclick="location.href='../index.html'" value="홈으로" >HOME</button>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
         </p>
        </div>
     </footer>
-    <script type="text/JavaScript">
-        console.log("this is 'string' ");
-        console.log("this is \"string\" ");
-        console.log("this\tis\n\"string\" ");
-    </script>
 </body>
 
 </html>

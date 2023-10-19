@@ -30,7 +30,7 @@
        <div class="t_cell">
         <hr>
         <p>
-            <button type="button" onclick="location.href='index.html'" value="홈으로" >HOME</button>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
         </p>
        </div>
     </footer>
