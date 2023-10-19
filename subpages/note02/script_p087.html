@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>String_Op</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>문자열 연산자 및 인덱스, length</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <pre>
+                    여기서 나온 과제로..
+                    - str1의 인덱싱을 이용해서
+                    - str2에 dog를 담아서, str2 길이를 나타내기.
+                    - str3에 orange를 담아서, str3 길이를 나타내기.
+                    - str4에 iloveyou를 담아서, str4 길이를 나타내기.
+                </pre>
+                <p id="ans1">1. str2에서 : </p>
+                <p id="ans2">2. str3에서 : </p>
+                <p id="ans3">3. str4에서 : </p>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let str1 = "abcdefghijklmnopqrstuvwyz"
+        //t str1 = "0123456789012345678901234"
+
+        console.log(str1);
+        console.log(str1[3]);
+        console.log(str1[4]);
+
+        
+
+        console.log(str1.length);
+
+        const c_str = idxes => {
+            let result = '';
+            idxes.forEach(element => {
+                result = result.concat(str1[element])
+            });
+            return result;
+        }
+
+        let str2 = c_str([3, 14, 6]);
+        let str3 = c_str([14, 17, 0, 13, 6, 4]);
+        let str4 = c_str([8, 11, 14, 21, 4, 23, 14, 20]);
+
+        let output = `${str2}, 그리고 길이 : ${str2.length}`
+        document.querySelector('#ex #ans1').innerHTML += output;
+        output = `${str3}, 그리고 길이 : ${str3.length}`
+        document.querySelector('#ex #ans2').innerHTML += output;
+        output = `${str4}, 그리고 길이 : ${str4.length}`
+        document.querySelector('#ex #ans3').innerHTML += output;
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>불(논리) 자료형</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <pre>
+    let b1 = !true;
+    let b2 = !!false;
+    let b3 = 57 > 333;
+    let b4 = (234 == '234') // 같음으로..
+    let b5 = "사랑" > "하마"
+
+    console.log( `!true           :       ${b1}` );
+    console.log( `!!false         :       ${b2}` );
+    console.log( `57 > 333        :       ${b3}` );
+    console.log( `234 == '234'    :       ${b4}` );
+    console.log( `"사랑" > "하마"  :       ${b5}` );
+    console.log( `가: ${"가".charCodeAt()}, 하: ${"하".charCodeAt()}` );
+                </pre>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let b1 = !true;
+        let b2 = !!false;
+        let b3 = 57 > 333;
+        let b4 = (234 == '234') // 같음으로..
+        let b5 = "사랑" > "하마"
+
+        console.log( `!true           :       ${b1}` );
+        console.log( `!!false         :       ${b2}` );
+        console.log( `57 > 333        :       ${b3}` );
+        console.log( `234 == '234'    :       ${b4}` );
+        console.log( `"사랑" > "하마"  :       ${b5}` );
+        console.log( `가: ${"가".charCodeAt()}, 하: ${"하".charCodeAt()}` );
+    </script>
+</body>
+
+</html>

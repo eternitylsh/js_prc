@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>title</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <h2>(ECMAScript) ES2015(ES6) 템플릿 문자열(template string)</h2>
+                <h3>백틱으로 감싸서 만들고 감싼 내부에 ${ }에 변수를 넣는다.</h3>
+                <h5>예로 : `${str} do it. ${num} valuable in this value. bit valuable is ${bit}.`</h5>
+                <h5>아래는 출력 결과.</h5>
+                <p></p>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let num = 123
+        let str = 'hello'
+        let bit = true
+
+        let res = `${str} do it. ${num} valuable in this value. bit valuable is ${bit}.`
+        console.log(res)
+
+        document.querySelector('#ex p').innerHTML = res;
+    </script>
+</body>
+
+</html>
