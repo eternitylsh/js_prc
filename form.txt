@@ -24,7 +24,11 @@
         </div>
     </header>
     <content class="t_row">
-        <div class="t_cell"></div>
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
     </content>
     <footer class="t_row">
        <div class="t_cell">
@@ -34,6 +38,9 @@
         </p>
        </div>
     </footer>
+    <script type="text/javascript">
+        
+    </script>
 </body>
 
 </html>
