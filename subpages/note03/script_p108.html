@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        table td {
+            border: 1px solid rgba(76, 63, 197, 0.7);
+        }
+        .a {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>복합 대입 연산자 활용</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let list = ''
+
+        const input_html = "\
+            <ul>\n\
+                <li>Hello 반갑다는 뜻.</li>\n\
+                <li>javascript..! 로 작성.</li>\n\
+            </ul>\n\
+            <h2>&& and </h2>\n\
+                <table class=\"a\">\n\
+                    <tr>\n\
+                        <td>false</td>\n\
+                        <td>false</td>\n\
+                        <td>false</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>true</td>\n\
+                        <td>false</td>\n\
+                        <td>false</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>false</td>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                    </tr>\n\
+                </table>\n\
+                <h2>|| or </h2>\n\\n\
+                <table class=\"a\">\n\
+                    <tr>\n\
+                        <td>false</td>\n\
+                        <td>false</td>\n\
+                        <td>false</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>true</td>\n\
+                        <td>false</td>\n\
+                        <td>true</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>false</td>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                    </tr>\n\
+                    <tr>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                        <td>true</td>\n\
+                    </tr>\n\
+                </table>\n\
+        ";
+
+        const ih_linees = input_html.split('\n');
+
+        for( let i = 0; i < ih_linees.length; i++) {
+            list += ih_linees[i];
+        }
+        
+        document.querySelector('#ex').innerHTML = list;
+    </script>
+</body>
+
+</html>

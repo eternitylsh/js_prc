@@ -9,6 +9,10 @@ html, body { height: 100%; }
   padding: 0.5rem;
 }
 
+#testspace .btn-group {
+  margin: 10px;
+}
+
 #testspace button {
   margin: 1rem;
 }

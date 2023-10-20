@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>증감 연산자 교재01</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <h5>target++ : 이러한 방법으로 적용할 경우.</h5>
+                <pre></pre>
+                <h5>target += 1 : 이러한 방법으로 적용할 경우.</h5>
+                <pre></pre>
+                <h5>++target : 이러한 방법으로 적용할 경우.</h5>
+                <pre></pre>
+                <br>
+                <h5> 결론 : target++ 는 출력하고 연산하는 식 </h5>
+                <h5> 이후 += 이나 ++target의 경우 연산하고 출력하는 식이기에 이와 같은 결론이 나온다. </h5>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let number = 10;
+
+        // number++ ex) 2-2-2.html p.110
+
+        // 원래 alert인데.. 걍 p 조회하는걸로 침.
+        // 복수 타겟을 한꺼번에 가져올때는 querySelectorAll이걸 쓴다.
+        const inhtmltarget = document.querySelectorAll('#ex pre');
+        // inhtmltarget.innerHTML = number;
+        // inhtmltarget.innerHTML = number++;
+        // inhtmltarget.innerHTML = number++;
+        // inhtmltarget.innerHTML = number++; // ex) 2-2-3.1html p.110
+        // 위에 이렇게 하니 최종결과만 보여지게되어서. 아래처럼 작성.
+        
+        let indata = "";
+        indata += `${number++}\n`;
+        indata += `${number++}\n`;
+        indata += `${number++}\n`;// ex) 2-2-3.1html p.110 advance version.
+        inhtmltarget[0].innerHTML = indata; // 이와같이 최종 텍스트를 이와 같이 결과를 보이게 가능.
+
+        indata = ""; // 재 초기화.
+        number = 10;
+
+        indata += `${number += 1}\n`;
+        indata += `${number += 1}\n`;
+        indata += `${number += 1}\n`;// ex) 2-2-3.1html p.110 advance version.
+        inhtmltarget[1].innerHTML = indata; // 이와같이 최종 텍스트를 이와 같이 결과를 보이게 가능.
+
+        indata = ""; // 재 초기화.
+        number = 10;
+
+        indata += `${++number}\n`;
+        indata += `${++number}\n`;
+        indata += `${++number}\n`;// ex) 2-2-3.1html p.110 advance version.
+        inhtmltarget[2].innerHTML = indata; // 이와같이 최종 텍스트를 이와 같이 결과를 보이게 가능.
+
+        // 결론.. target++ 는 출력하고 연산하는 식
+        // 이후 += 이나 ++target의 경우 연산하고 출력하는 식이기에 이와 같은 결론이 나온다.
+    </script>
+</body>
+
+</html>

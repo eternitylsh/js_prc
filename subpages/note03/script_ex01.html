@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex table {
+            display: flex;
+            justify-content: center;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        #ex table tr:nth-child(2n-1) {
+            background-color: aliceblue;
+        }
+
+        #ex table th {
+            background-color: cornflowerblue;
+        }
+
+        #ex table th, #ex table td {
+            border: 1px solid black;
+            padding: 0.5rem 2.5rem;
+        }
+
+        
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>구구단 javascript로...</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+
+            let multy_count = +prompt("몇 단을 표현할까요?", 2);
+            let idx = 1;
+
+            const count_end = 9;
+
+            const table = {
+                head : `<table>`,
+                head_end : `</table>`,
+                tr : `<tr>`,
+                tr_end: `</tr>`,
+                th1 : `<th>`,
+                th1_end : `</th>`,
+                th2 : `<th>결과</th>`,
+                td : `<td>`,
+                td_end : '</td>',
+            };
+
+            let list = "";
+
+            list += table.head;
+            list += table.tr;
+            list += `${table.th1}${multy_count}단${table.th1_end}`;
+            list += table.th2;
+            list += table.tr_end;
+
+            for( ; idx <= count_end; idx++ ) {
+                list += table.tr;
+                list += `${table.td}${multy_count} x ${idx} = ${table.td_end}`;
+                list += `${table.td}${ multy_count * idx }${table.td_end}`;
+                list += table.tr_end;
+            }
+
+            list += table.head_end;
+
+            document.querySelector('#ex').innerHTML = list;
+            
+    </script>
+</body>
+
+</html>
