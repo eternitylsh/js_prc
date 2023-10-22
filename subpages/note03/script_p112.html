@@ -1,46 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>document</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap"
+      rel="stylesheet"
+    />
     <!--    <link rel="stylesheet" href="../css/init.css">-->
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style type="text/css"></style>
+  </head>
 
-<body class="table h_scene">
+  <body class="table h_scene">
     <header class="t_row">
-        <div class="t_cell">
-            <h1>title</h1>
-        </div>
+      <div class="t_cell">
+        <h1>증감 연산자 교재02</h1>
+      </div>
     </header>
     <content class="t_row">
-        <div class="t_cell">
-            <div id="ex">
-                <pre></pre>
-            </div>
+      <div class="t_cell">
+        <div id="ex">
+          <p>p.112 - ex 2-2-5</p>
+          <p>출력1</p>
+          <p class="pout"></p>
+          <p>출력2</p>
+          <p class="pout"></p>
+          <p>출력3</p>
+          <p class="pout"></p>
+          <p>출력4</p>
+          <p class="pout"></p>
+          <p>================================</p>
+          <p>p.112 - ex 2-2-6</p>
+          <p>출력1 - 그대로..</p>
+          <p class="pout2"></p>
+          <p>출력2 - ++ * 2</p>
+          <p class="pout2"></p>
+          <p>출력3 - 그대로</p>
+          <p class="pout2"></p>
+          <p>출력4 - -- * 2</p>
+          <p class="pout2"></p>
         </div>
+      </div>
     </content>
     <footer class="t_row">
-       <div class="t_cell">
-        <hr>
+      <div class="t_cell">
+        <hr />
         <p>
-            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+          <button
+            type="button"
+            onclick="location.href='../../index.html'"
+            value="홈으로"
+          >
+            HOME
+          </button>
         </p>
-       </div>
+      </div>
     </footer>
     <script type="text/javascript">
-        let number = 10;
+      let number = 10;
 
-        const inhtmltarget = document.querySelectorAll('#ex pre');
+      let out_htmls = document.querySelectorAll("#ex .pout");
+      out_htmls[0].innerHTML = number++;
+      out_htmls[1].innerHTML = ++number;
+      out_htmls[2].innerHTML = number--;
+      out_htmls[3].innerHTML = --number;
 
-        
+      number = 10; // re init.
+
+      out_htmls = document.querySelectorAll("#ex .pout2");
+      out_htmls[0].innerHTML = number;
+      number++;
+      number++;
+      out_htmls[1].innerHTML = number;
+      out_htmls[2].innerHTML = number;
+      number--;
+      number--;
+      out_htmls[3].innerHTML = number;
     </script>
-</body>
-
+  </body>
 </html>
