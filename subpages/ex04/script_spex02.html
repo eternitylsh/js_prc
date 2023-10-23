@@ -102,7 +102,13 @@
         }
 
         const calc_changecount = in_money => {
-
+            let c_money = in_money
+            for(let i = 0; i <change.types.length; i++) {
+                let ctype = change.types[i]
+                if( 0 < Math.floor(c_money / ctype) ) {
+                    
+                }
+            }
         }
 
         window.onload( () => {
