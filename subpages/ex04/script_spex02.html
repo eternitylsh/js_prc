@@ -98,21 +98,42 @@
         // 총 idx : 8
         const change = {
             types: [50000, 10000, 5000, 1000, 500, 100, 50, 10],
-            count: [],
+            count: [], // ( type, count )
+        }
+
+        const __Init__ = () => {
+            change.count = []
         }
 
         const calc_changecount = in_money => {
             let c_money = in_money
             for(let i = 0; i <change.types.length; i++) {
                 let ctype = change.types[i]
-                if( 0 < Math.floor(c_money / ctype) ) {
-                    
+                const cc = Math.floor(c_money / ctype)
+                if( 0 < cc) {
+                    change.count.push((i, cc))
                 }
             }
         }
 
-        window.onload( () => {
+        const Result_view = () => {
 
+
+
+            // let view_data = `\
+            //     <tr>\
+            //         <td>${}권</td>\
+            //         <td>${}개</td>\
+            //     </tr>\
+            // `
+
+            
+        }
+
+        window.onload( () => {
+            __Init__()
+            calc_changecount(input)
+            Result_view()
         } )
     </script>
 </body>
