@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+
+        #ex {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #gp_timer {
+            display: flex;
+            justify-content: center;
+        }
+        #gp_timer #timer_circle {
+            background-image: url("./res/clockbody.png");
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        #timer_circle #ghour {
+            background-image: url("./res/hour.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            transform: rotateZ(0deg);
+        }
+
+        #timer_circle #gmin {
+            background-image: url("./res/min.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            transform: rotateZ(0deg);
+        }
+
+        #timer_circle #gsec {
+            background-image: url("./res/sec.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            transform: rotateZ(0deg);
+        }
+
+        #time_circle #gcenter {
+            background-image: url("./res/clock_center.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 5;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+        }
+
+        #ex #text_timer {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>타이머에 그래픽 회전시계 제작</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="gp_timer">
+                    <div id="timer_circle">
+                        <div id="ghour"></div>
+                        <div id="gmin"></div>
+                        <div id="gsec"></div>
+                        <div id="gcenter"></div>
+                    </div>
+                </div>
+                <div id="text_timer">
+                    <p><span></span> : <span></span> : <span></span> : <span></span> : <span></span> : <span></span></p>
+                </div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        
+        const date_outputes = document.querySelectorAll('#text_timer p span')
+        
+        // hour, min, sec
+        const time_objs = [
+            document.querySelector('#timer_circle #ghour'),
+            document.querySelector('#timer_circle #gmin'),
+            document.querySelector('#timer_circle #gsec')
+        ]
+
+        const t_rotate = (__t, __udeg) => __t.style.transform = `rotateZ(${__udeg}deg)`
+
+        const ondraw = () => {
+
+            const houridx = 3
+            const secidx = 5
+            const minidx = 4
+            const afternoonhour = 12
+
+            const date = new Date()
+
+            let times = [
+                date.getFullYear(),
+                date.getMonth() + 1,
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds()
+            ]
+
+            
+
+            date_outputes.forEach( (_e, _idx) => {
+
+                if( _idx === secidx ) {
+                    t_rotate( time_objs[2], times[_idx] * (360 / 60) ) // 2 : secobj
+                }
+
+                if( _idx === minidx ) {
+                    t_rotate( time_objs[1], times[_idx] * (360 / 60) ) // 1 : minobj
+                }
+
+                if( _idx === houridx ) {
+                    // 3-1-2.html, 3-1-3.html
+                    t_rotate( time_objs[0], times[_idx] * (360 / afternoonhour) ) // 1 : minobj
+                    let hour = times[_idx];
+                    if( afternoonhour <= hour ) {
+                        times[_idx] = `오후 ${hour - afternoonhour}`
+                    } else {
+                        times[_idx] = `오전 ${hour}`
+                    }
+                }
+                _e.innerHTML = times[_idx]
+            });
+        }
+
+        
+        setInterval( () => {
+            ondraw();
+        }, 1000 )
+
+        ondraw();
+    </script>
+</body>
+
+</html>

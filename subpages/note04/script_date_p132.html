@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>조건식을 이용한 간이 시계제작</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <p><span></span> : <span></span> : <span></span> : <span></span> : <span></span> : <span></span></p>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        
+        const date_outputes = document.querySelectorAll('#ex p span')
+
+        const ondraw = () => {
+
+            const houridx = 3
+            const afternoonhour = 12
+
+            const date = new Date()
+
+            let times = [
+                date.getFullYear(),
+                date.getMonth() + 1,
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds()
+            ]
+
+            
+
+            date_outputes.forEach( (_e, _idx) => {
+                if( _idx === houridx ) {
+                    // 3-1-2.html, 3-1-3.html
+                    let hour = times[_idx];
+                    if( afternoonhour <= hour ) {
+                        times[_idx] = `오후 ${hour - 12}`
+                    } else {
+                        times[_idx] = `오전 ${hour}`
+                    }
+                }
+                _e.innerHTML = times[_idx]
+            });
+        }
+
+        
+        setInterval( () => {
+            ondraw();
+        }, 1000 )
+
+        ondraw();
+    </script>
+</body>
+
+</html>

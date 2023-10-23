@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>증감연산자 추가연습</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <pre></pre>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        let input = +prompt("값을 입력하세요.", 10)
+        let num1 = input
+
+        // 중간공정.
+        num1++
+        num1++
+        num1++
+
+        const output_html = document.querySelectorAll('#ex p')
+        output_html[0].innerHTML = `입력된 숫자(num1)를 기반으로 출력된 숫자 : ${num1}`
+
+        let num2 = input
+
+        ++num2
+        ++num2
+        ++num2
+
+        output_html[1].innerHTML = `입력된 숫자(num2)를 기반으로 출력된 숫자 : ${num2}`
+
+        let num3 = input
+
+        num3++
+        ++num3
+        num3--
+        --num3
+
+        output_html[2].innerHTML = `입력된 숫자(num3)를 기반으로 출력된 숫자 : ${num3}`
+    </script>
+</body>
+
+</html>

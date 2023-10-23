@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>CDN이라는 용어에 관해서..</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js"></script>
+    <script type="text/javascript">
+        
+        const ondraw = () => {
+            const now = dayjs()
+            let list = `\
+                    <h1>지금시간: ${now}</h1>\
+                    <h2>기본 : ${now.format()}</h2>\
+                    <div>\
+                        <div>포멧1: ${now.format("YYYY/MM/DD")}</div>\
+                        <div>포멧2: ${now.format("YYYY년 MM월 DD일, HH시mm분ss초")}</div>\
+                    </div>\
+            `
+            document.querySelector('#ex').innerHTML = list;
+        }
+        
+        setInterval( () => ondraw(), 1000 )
+    </script>
+</body>
+
+</html>

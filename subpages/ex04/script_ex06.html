@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>문자열로 구분하는 switch</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <p></p>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex p')
+        let str = ""
+        const input = prompt("과일명을 입력하세요.", "사과")
+
+        // 아 스트레스..
+        switch(input) {
+            case "사과":
+                str += "사과입니다.<br>"
+                break
+            case "수박":
+                str += "수박입니다.<br>"
+                break
+            case "키위":
+                str += "키위입니다.<br>"
+                break
+            case "딸기":
+                str += "딸기입니다.<br>"
+                break
+            default:
+                alert("재고가 없습니다.")
+        }
+        op_html.innerHTML = str
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>title</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+
+        const ex_html = document.querySelector('#ex')
+
+        if (true) {
+            ex_html.innerHTML += `<p>if (true) 는 동작됨. </p>`
+        }
+        if (false)  ex_html.innerHTML += `<p>if (false) 는 동작안됨. </p>`
+        if ("d") ex_html.innerHTML += `<p>if ("d") 는 동작됨 </p>`
+        if ("")  ex_html.innerHTML += `<p>if ("") 는 동작안됨 </p>`
+        if (127) ex_html.innerHTML += `<p>if (127) 는 동작됨 </p>`
+        if (0)  ex_html.innerHTML += `<p>if (0) 는 동작안됨 </p>`
+        if (120 < 1000) ex_html.innerHTML += `<p>if (120 < 1000) 는 동작됨 </p>`
+        if (120 > 1000)  ex_html.innerHTML += `<p>if (120 > 1000) 는 동작안됨 </p>`
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>title</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        // const input = +prompt("숫자를 입력하세요.", '')
+        
+        // 아래 ? 좌측에 () 생략도 가능.. 다만 보기 힘들다는..
+        // const res = (input >= 0) ? '0 이상의 숫자입니다.' : '0보다 작은 숫자입니다.'
+        // document.querySelector('#ex').innerHTML = `<p>결과 : ${res}</p>`
+        
+
+        // 참고로 아래와 같은 코드 작성도 가능하니 참고를..
+
+        const input = confirm("대답해주세요.")
+        console.log(input)
+
+        const onans = ans => document.querySelector('#ex').innerHTML = ans
+
+        input ? onans("대답했져~") : onans("무시...")
+    </script>
+</body>
+
+</html>
