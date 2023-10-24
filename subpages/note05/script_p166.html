@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>특정 위치 찾는기능</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <h2>배열내 도시이름 찾기</h2>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+
+        const op_html = document.querySelector('#ex')
+
+        const input = prompt("찾는 도시 이름을 쓰시오.")
+        const arr = ["부산", "서울", "대구", "대전", "광주", "인천", "제주"]
+        const res = arr.indexOf(input)
+
+        if( -1 === res )
+            op_html.innerHTML += "<h3>송구스럽게도 찾고자 하는 도시는 없습니다.</h3>"
+        else {
+
+            op_html.innerHTML += `<h3>찾고자 하는 도시는 ${res + 1}번째에 있습니다.</h3>`
+
+            op_html.innerHTML += `<h4>`
+            
+            for(let i = 0; i < arr.length; i++) {
+                let city = arr[i]
+                if( i === res ) {
+                    op_html.innerHTML += `<mark>${city}</mark>`
+                } else 
+                    op_html.innerHTML += `${city}`
+                
+                op_html.innerHTML += `, `
+            }
+            
+
+            op_html.innerHTML += `</h4>`
+        }
+
+        op_html.innerHTML += `<md-block>\
+
+            ======================================================  
+            \`\`\`
+
+            const input = prompt\(\"찾는 도시 이름을 쓰시오.\"\)\  
+            const arr = \[\"부산\", \"서울\", \"대구\", \"대전\", \"광주\", \"인천\", \"제주\"\]\  
+            const res = arr.indexOf\(input\)\  
+\  
+            if\( -1 === res \)\  
+                op_html.innerHTML += \"\<h3\>송구스럽게도 찾고자 하는 도시는 없습니다.\<\/h3\>\"\  
+            else \{\  
+\  
+                op_html.innerHTML += \`\<h3\>찾고자 하는 도시는 \$\{res + 1\}번째에 있습니다.\<\/h3\>\`\  
+\  
+                op_html.innerHTML += \`<h4>\`\  
+                \  
+                for\(let i = 0; i < arr.length; i++\) {\  
+                    let city = arr[i]\  
+                    if\( i === res \) {\  
+                        op_html.innerHTML += \`\<\mark\>\$\{city\}\<\/\mark\>\`\  
+                    } else \  
+                        op_html.innerHTML += \`\$\{city\}\`\  
+                    \  
+                    op_html.innerHTML += \`, \`\  
+                \}\  
+                \  
+\  
+                op_html.innerHTML += \`\<\/h4\>\`\  
+            }\
+
+            \`\`\`
+            ======================================================  
+            </md-block>`
+
+    </script>
+</body>
+
+</html>

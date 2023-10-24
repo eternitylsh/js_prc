@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+
+        #ex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        #ex table {
+            display: flex;
+            justify-content: center;
+            border-collapse: collapse;
+            text-align: center;
+            width: 250px;
+        }
+
+        #ex table tr:nth-child(2n-1) {
+            background-color: aliceblue;
+        }
+
+        #ex table th {
+            background-color: cornflowerblue;
+        }
+
+        #ex table th, #ex table td {
+            border: 1px solid black;
+            padding: 0.5rem 2.0rem;
+            height: 1.5 rem;
+        }
+
+        #ex table .h_ans {
+            background-color: darkgrey;
+        }
+
+        /* #ex table td:nth-child(2n-1) {
+            width: 320px;
+            
+        }
+
+        #ex table td:nth-child(2n) {
+            width: 40px;
+        } */
+
+        
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>구구단 범위로 javascript로...</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+
+            let multy_count = +prompt("몇 단까지 표현할까요?", 2);
+            let mhide_ans_count = +prompt("답을 숨길 최대 빈칸갯수를 기입해주세요.", 1)
+            let idx = 1;
+            const init_mc = 1;
+            const count_end = 9;
+
+            let n_hidecount = 0;
+            const hide_value = 25; // 몇프로 확률로 숨길것인가?
+
+            const table = {
+                head : `<table>`,
+                head_end : `</table>`,
+                tr : `<tr>`,
+                tr_end: `</tr>`,
+                th1 : `<th>`,
+                th1_end : `</th>`,
+                th2 : `<th>결과</th>`,
+                td : `<td>`,
+                td_end : '</td>',
+            };
+
+            const Joke_hide = ans => {
+                let rnd = Math.random() * 100 // 소수점으로 놔둬도 될듯함.
+                if( mhide_ans_count > n_hidecount) {
+                    if( hide_value > rnd ) {
+                        n_hidecount++
+                        return '<td class="h_ans"> '
+                    }
+                    else
+                        return `${table.td}${ans}`
+                }
+                else
+                    return `${table.td}${ans}`
+            }
+
+            
+
+            let list = "";
+
+            for( let j = init_mc; j <= multy_count; j++) {
+                idx = 1; // 초기화는 필수!
+
+                list += table.head;
+                list += table.tr;
+                list += `${table.th1}${j}단${table.th1_end}`;
+                list += table.th2;
+                list += table.tr_end;
+
+                for( ; idx <= count_end; idx++ ) {
+                    list += table.tr;
+                    list += `${table.td}${j} x ${idx} = ${table.td_end}`;
+                    list += `${ Joke_hide(j * idx) }${table.td_end}`;
+                    list += table.tr_end;
+                }
+
+                list += table.head_end;
+            }
+
+            
+
+            document.querySelector('#ex').innerHTML = list;
+
+            document.querySelector('#ex').innerHTML += `<md-block>\
+
+                // 2023-10-24 : 오후 5시 반즈음 수정한 코드.
+  
+                =========================================================  
+                \`\`\`
+                let multy_count = +prompt("몇 단까지 표현할까요?", 2);  
+                let mhide_ans_count = +prompt("답을 숨길 최대 빈칸갯수를 기입해주세요.", 1)  
+                let idx = 1;  
+                const init_mc = 1;  
+                const count_end = 9;  
+  
+                let n_hidecount = 0;  
+                const hide_value = 25; // 몇프로 확률로 숨길것인가?  
+  
+                const table = {  
+                    head : \`<table>\`,  
+                    head_end : \`</table>\`,  
+                    tr : \`<tr>\`,  
+                    tr_end: \`</tr>\`,  
+                    th1 : \`<th>\`,  
+                    th1_end : \`</th>\`,  
+                    th2 : \`<th>결과</th>\`,  
+                    td : \`<td>\`,  
+                    td_end : '</td>',  
+                };  
+  
+                const Joke_hide = ans => {  
+                    let rnd = Math.random() * 100 // 소수점으로 놔둬도 될듯함.  
+                    if( mhide_ans_count > n_hidecount) {  
+                        if( hide_value > rnd ) {  
+                            n_hidecount++  
+                            return '<td class="h_ans"> '  
+                        }  
+                        else  
+                            return \`\${table.td}\${ans}\`  
+                    }  
+                    else  
+                        return \`\${table.td}\${ans}\`  
+                }  
+  
+                  
+  
+                let list = "";  
+  
+                for( let j = init_mc; j <= multy_count; j++) {  
+                    idx = 1; // 초기화는 필수!  
+  
+                    list += table.head;  
+                    list += table.tr;  
+                    list += \`\${table.th1}\${j}단\${table.th1_end}\`;  
+                    list += table.th2;  
+                    list += table.tr_end;  
+  
+                    for( ; idx <= count_end; idx++ ) {  
+                        list += table.tr;  
+                        list += \`\${table.td}\${j} x \${idx} = \${table.td_end}\`;  
+                        list += \`\${ Joke_hide(j * idx) }\${table.td_end}\`;  
+                        list += table.tr_end;  
+                    }  
+  
+                    list += table.head_end;  
+                }  
+  
+              
+  
+                document.querySelector('#ex').innerHTML = list;  
+                \`\`\`
+                =========================================================  
+            </md-block>`
+            // 버그 해결용 코드
+            // const Joke_hide_d = (i, j, ans) => {
+            //     let rnd = Math.random() * 100 // 소수점으로 놔둬도 될듯함.
+            //     if( mhide_ans_count > n_hidecount) {
+            //         if( hide_value > rnd ) {
+            //             n_hidecount++
+            //             console.log( `${i} x ${j} = ${ans} 에서 ${n_hidecount}`  )
+            //             return '<td class="h_ans"> '
+            //         } // ${table.td}
+            //         else
+            //             return `${table.td}${ans}`
+            //     }
+            //     else
+            //         return `${table.td}${ans}`
+            // }
+            
+    </script>
+</body>
+
+</html>
+

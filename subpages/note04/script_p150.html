@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>p.150 중첩조건문</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+        const score = +prompt('학점을 입력해주세요.', '학점')
+        const op_html = document.querySelector('#ex')
+
+        if( 4.5 === score )
+            op_html.innerHTML += `해당 점수의 칭호 : 신`
+        else if (4.2 <= score && 4.5 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 교수님의 사랑`
+        else if (3.5 <= score && 4.2 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 현 체제의 수호자`
+        else if (2.8 <= score && 3.5 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 일반인`
+        else if (2.3 <= score && 2.8 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 일탈을 꿈꾸는 소시민`
+        else if (1.75 <= score && 2.3 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 오락문화의 선구자`
+        else if (1.0 <= score && 1.75 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 불가촉천민`
+        else if (0.5 <= score && 1.0 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 자벌레`
+        else if (0 <= score && 0.5 > score)
+            op_html.innerHTML += `해당 점수의 칭호 : 플랑크톤`
+        else
+            op_html.innerHTML += `해당 점수의 칭호 : 시대를 앞서가는 혁명의 씨앗`
+
+        // 이거 뭔 쌩노가다..
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>책 p148 짝,홀 구분..</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <script type="text/javascript">
+
+        const op_html = document.querySelector('#ex')
+        
+        // 3-2-4.html
+        // 근데 이 방법은 번거롭고 쓸데없음.
+        // const in_data = prompt('정수를 입력해주세요.', '')
+        // const in_end = in_data[in_data.length - 1]
+
+        // if( "0" === in_end || 
+        // "2" === in_end || 
+        // "4" === in_end || 
+        // "6" === in_end || 
+        // "8" === in_end
+        // ) 
+        //     op_html.innerHTML += `${in_data}는 짝수입니다.`
+        // else
+        //     op_html.innerHTML += `${in_data}는 홀수입니다.`
+
+        // 고로... 3-2-5.html
+        const in_data = +prompt('정수를 입력해주세요.', '')
+
+        if( 0 === in_data % 2 )
+            op_html.innerHTML += `${in_data}는 짝수입니다.`
+        else
+            op_html.innerHTML += `${in_data}는 홀수입니다.`
+
+        // 이렇게 간단히 나타낼 수 있음.
+
+    </script>
+</body>
+
+</html>

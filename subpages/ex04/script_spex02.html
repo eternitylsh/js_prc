@@ -64,18 +64,6 @@
                             <th>잔돈</th>
                             <th>개수</th>
                         </tr>
-                        <tr>
-                            <td>1만</td>
-                            <td>3장</td>
-                        </tr>
-                        <tr>
-                            <td>5천</td>
-                            <td>1장</td>
-                        </tr>
-                        <tr>
-                            <td>100원</td>
-                            <td>1개</td>
-                        </tr>
                     </table>
                 </div>
             </div>
@@ -94,6 +82,8 @@
         const inview_title = document.querySelector('#in_title h2')
         inview_title.innerHTML = `입력하신 <mark>${input}원</mark>을 거스름으로 분리하면`
 
+        const op_table = document.querySelector('#out_table table')
+
         // 여기서 idx 는 50000 ~ 10까지 idx 순서로..
         // 총 idx : 8
         const change = {
@@ -111,30 +101,74 @@
                 let ctype = change.types[i]
                 const cc = Math.floor(c_money / ctype)
                 if( 0 < cc) {
-                    change.count.push((i, cc))
+                    // 스택보단.. 큐로 정상작동;;
+                    change.count.unshift([ctype, cc])
+                    c_money -= (ctype * cc)
                 }
             }
         }
 
         const Result_view = () => {
+            console.log(change.count)
+
+            let t_count = 0
+
+            while( 0 < change.count.length ) {
+                let c_data = change.count.pop()
+                let view_data = `\
+                    <tr>\
+                        <td>${c_data[0]}원권</td>\
+                    `
+                if( 1000 > c_data[0] ) // 화폐타입이 1000원 이하다.. 
+                    view_data += `<td>${c_data[1]}개</td>`
+                else
+                    view_data += `<td>${c_data[1]}매</td>`
+                view_data += `</tr>`
+                
+                // let view_data = `\
+                //     <tr>\
+                //         <td>${c_data[0]}원권</td>\
+                //         <td>${c_data[1]}매</td>\
+                //     </tr>\
+                // `
+                op_table.innerHTML += view_data;
+                t_count += c_data[1]
+            }
+            // 여기 출력 부분을 
+            op_table.innerHTML += `<tr>\
+                    <td>총 거스름갯수</td>
+                    <td>${t_count}</td>
+                </tr>
+            `
 
 
-
-            // let view_data = `\
-            //     <tr>\
-            //         <td>${}권</td>\
-            //         <td>${}개</td>\
-            //     </tr>\
-            // `
-
-            
+            // for( let i = 0; i < change.count.length; i++ ) {
+            //     let c_data = change.count[i]
+            //     let view_data = `\
+            //         <tr>\
+            //             <td>${c_data[0]}원권</td>\
+            //         `
+            //     if( 1000 > c_data[0] ) // 화폐타입이 1000원 이하다.. 
+            //         view_data += `<td>${c_data[1]}개</td>`
+            //     else
+            //         view_data += `<td>${c_data[1]}매</td>`
+            //     view_data += `</tr>`
+                
+            //     // let view_data = `\
+            //     //     <tr>\
+            //     //         <td>${c_data[0]}원권</td>\
+            //     //         <td>${c_data[1]}매</td>\
+            //     //     </tr>\
+            //     // `
+            //     op_table.innerHTML += view_data;
+            // }
         }
 
-        window.onload( () => {
+        window.onload = () => {
             __Init__()
             calc_changecount(input)
             Result_view()
-        } )
+        }
     </script>
 </body>
 
