@@ -1,57 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>document</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap"
+      rel="stylesheet"
+    />
     <!--    <link rel="stylesheet" href="../css/init.css">-->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css" />
     <style type="text/css">
-        #ex #temperature table {
-            border-collapse: collapse;
-        }
-        #ex #temperature td {
-            border: 1px solid black;
-            width: 1.5rem;
-            height: 0.8rem;
-        }
+      #ex #temperature table {
+        border-collapse: collapse;
+      }
+      #ex #temperature td {
+        border: 1px solid black;
+        width: 6.2rem;
+        height: 2.2rem;
+        font-size: 0.9rem;
+        text-align: center;
+      }
 
-        /* #ex #temperature .td01 {
-            background-color: ;
-        }  여기서부터 작업.. 10-25;*/
+      #ex #temperature .tdbold {
+        font-weight: 600;
+      }
+
+      #ex #temperature .td01 {
+        background-color: purple;
+      }
+      #ex #temperature .td02 {
+        background-color: dodgerblue;
+      }
+      #ex #temperature .td03 {
+        background-color: gold;
+      }
+      #ex #temperature .td04 {
+        background-color: greenyellow;
+      }
+      #ex #temperature .td05 {
+        background-color: crimson;
+      }
+
+      #ex #output #res {
+        color: deepskyblue;
+      }
     </style>
-</head>
+  </head>
 
-<body class="table h_scene">
+  <body class="table h_scene">
     <header class="t_row">
-        <div class="t_cell">
-            <h1>title</h1>
-        </div>
+      <div class="t_cell">
+        <h1>title</h1>
+      </div>
     </header>
     <content class="t_row">
-        <div class="t_cell">
-            <div id="ex">
-                <div id="temperature">
-
-                </div>
-                <div id="output">
-
-                </div>
-            </div>
+      <div class="t_cell">
+        <div id="ex">
+          <div id="temperature"></div>
+          <div id="output"></div>
         </div>
+      </div>
     </content>
     <footer class="t_row">
-       <div class="t_cell">
-        <hr>
+      <div class="t_cell">
+        <hr />
         <p>
-            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+          <button
+            type="button"
+            onclick="location.href='../../index.html'"
+            value="홈으로"
+          >
+            HOME
+          </button>
         </p>
-       </div>
+      </div>
     </footer>
     <!-- 마크다운 문법적용을 위한 스크립트들 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
@@ -61,105 +87,156 @@
     <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
 
     <script type="text/javascript">
-        const temp_html = document.querySelector('#ex #temperature')
-        const op_html = document.querySelector('#ex #output')
+      const temp_html = document.querySelector("#ex #temperature");
+      const op_html = document.querySelector("#ex #output");
 
-        const temp_config = {
-            line_temps : [16, 22, 28, 32],
-            color : ["purple", "dodgerblue", "gold", "greenyellow", "crimson"],
-            info : [
-                "정상온도에서 벗어났습니다.",
-                "시원합니다.",
-                "보통입니다.",
-                "더위 주의",
-                "정상온도에서 초과했습니다.",
-            ],
-            area : {
-                size : [1.5, 0.8], // rem
-                b_count : [6, 4, 4, 3, 6]
-            },
-            res : {
-                res1: "지금의 온도는",
-                res2: " 이며, 상태는 ", // 이후는 info에서..
-                // 아래는 애니메이션 컬러.
-                f_color: "#2A94FF",
-                e_color: "#FF742A"
-            },
-            con : {
-                tr : 3,
-                td_area: 5,
-                td : 0 // 아래에 초기화로 b_count설정에 따라 결정.
-            },
+      const temp_config = {
+        line_temps: [16, 22, 28, 32],
+        class_id: "td0",
+        info: [
+          "정상온도에서 벗어났습니다.",
+          "시원합니다.",
+          "보통입니다.",
+          "더위 주의",
+          "정상온도에서 초과했습니다.",
+        ],
 
-            // list..
-            tr_idx: {
-                title: 0,
-                length: 1,
-                info: 2,
+        err_info: `잘못된 온도 입력입니다. `,
+
+        ans: -1, // 초기값으로 -1.
+        area: {
+          b_count: [6, 4, 4, 3, 6],
+        },
+        res: {
+          res1: "지금의 온도는",
+          res2: " 이며, 상태는 ", // 이후는 info에서..
+          // 아래는 애니메이션 컬러.
+          f_color: "#2A94FF",
+          e_color: "#FF742A",
+        },
+        con: {
+          tr: 3,
+          td_area: 5,
+          td: 0, // 아래에 초기화로 b_count설정에 따라 결정.
+        },
+
+        // list..
+        tr_idx: {
+          title: 0,
+          length: 1,
+          info: 2,
+        },
+      };
+
+      // config init.
+      temp_config.con.td = new dfd.Series(temp_config.area.b_count).sum();
+
+      let i = 0;
+
+      const now_temp = +prompt("현재 온도를 입력해주세요.", 22);
+
+      // 여기서 어디를 표현하고 텍스트를 출력할지 정한다.
+
+      const Get_Ans = (now_temp) => {
+        let ans;
+        for (i = 0; i < temp_config.info.length; i++) {
+          if (i === 0) ans = now_temp < temp_config.line_temps[i] ? 0 : -1;
+          else if (i === temp_config.info.length - 1)
+            ans =
+              now_temp >= temp_config.line_temps[i - 1]
+                ? temp_config.info.length - 1
+                : -1;
+          else
+            ans =
+              now_temp >= temp_config.line_temps[i - 1]
+                ? now_temp < temp_config.line_temps[i]
+                  ? i
+                  : -1
+                : -1;
+          if (0 <= ans) return ans;
+        }
+
+        return ans;
+      };
+
+      // 답구하기
+      temp_config.ans = Get_Ans(now_temp);
+
+      const Generate_trlist = (tridx) => {
+        let td_list = "";
+
+        for (gi = 0; gi < temp_config.con.td_area; gi++) {
+          if (temp_config.tr_idx.title === tridx) {
+            if (0 === gi)
+              // 첫 행.
+              td_list = td_list.concat(
+                `<td colspan="${temp_config.area.b_count[gi]}" class="tdbold">${temp_config.line_temps[gi]}미만</td>`
+              );
+            else if (temp_config.con.td_area - 1 === gi)
+              // 마지막 행.
+              td_list = td_list.concat(
+                `<td colspan="${temp_config.area.b_count[gi]}" class="tdbold">${
+                  temp_config.line_temps[gi - 1]
+                }이상</td>`
+              );
+            else
+              td_list = td_list.concat(
+                `<td colspan="${temp_config.area.b_count[gi]}" class="tdbold">${
+                  temp_config.line_temps[gi - 1]
+                }이상 ~ ${temp_config.line_temps[gi]}미만</td>`
+              );
+          }
+
+          if (temp_config.tr_idx.length === tridx) {
+            // 두번째 열은 여기서.
+            for (let j = 0; j < temp_config.area.b_count[gi]; j++) {
+              td_list = td_list.concat(
+                `<td class="${temp_config.class_id}${gi + 1}"></td>`
+              );
             }
+          }
+
+          if (temp_config.tr_idx.info === tridx) {
+            // temp_config.info[gi];
+
+            let in_ansval = temp_config.ans === gi ? temp_config.info[gi] : "";
+
+            console.log(in_ansval);
+
+            td_list = td_list.concat(
+              `<td colspan="${temp_config.area.b_count[gi]}">${in_ansval}</td>`
+            );
+          }
         }
 
-        // config init.
-        temp_config.con.td = new dfd.Series(temp_config.area.b_count).sum()
+        return `<tr>${td_list}</tr>`;
+      };
 
-        let i = 0
-        
-        const now_temp = +prompt("현재 온도를 입력해주세요.", 22)
-        
+      // table 자체는 제외.
+      let table_list = "";
 
+      for (i = 0; i < temp_config.con.tr; i++) {
+        table_list += `${Generate_trlist(i)}`;
+      }
 
-        const Generate_trlist = tridx => {
-            let td_list = ""
-
-            for( i = 0; i < temp_config.con.td_area; i++ ) {
-
-                if( temp_config.tr_idx.title === tridx ) {
-                    if( 0 === i ) // 첫 행.
-                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i]}미만</td>`)
-                    else if( (temp_config.con.td_area - 1) === i ) // 마지막 행.
-                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i-1]}이상</td>`)
-                    else
-                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i-1]}이상 ~ ${temp_config.line_temps[i]}미만</td>`)
-                }
-
-                if( temp_config.tr_idx.length === tridx) {
-                    // 두번째 열은 여기서.
-                    for (let j = 0; j < temp_config.area.b_count; j++) {
-                        td_list = td_list.concat( `<td class></td>` )
-                    }
-                }
-                
-                if( temp_config.tr_idx.info === tridx ) {
-
-                }
-
-
-                    
-                
-                
-            }
-
-            return `<tr>${td_list}</tr>`
-        }
-
-        
-
-        
-
-        // table 자체는 제외.
-        let table_list = ""
-
-        for ( i = 0; i < temp_config.con.tr; i++ ) {
-            table_list += `${Generate_trlist(i)}`
-        }
-
-
-        temp_html.innerHTML = temp_html.innerHTML.concat(`<table>\
+      temp_html.innerHTML = temp_html.innerHTML.concat(`<table>\
         
             ${table_list}
 
-        </table>`)
-    </script>
-</body>
+        </table>`);
 
+      const Output_Msg = (ans) =>
+        0 > ans
+          ? temp_config.err_info.concat(now_temp)
+          : temp_config.res.res1.concat(
+              now_temp,
+              temp_config.res.res2,
+              temp_config.info[ans]
+            );
+
+      op_html.innerHTML = op_html.innerHTML.concat(
+        `<h2 id="res">${Output_Msg(temp_config.ans)}</h2>`
+      );
+    </script>
+  </body>
 </html>
