@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex {
+            display: flex;
+            justify-content: center;
+        }
+        #ex #gs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            flex-direction: row;
+            width: 640px;
+        }
+
+        #ex #gs .cc {
+            width: 5px;
+            height: 5px;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>이중for문과 무식한 그라디언트</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="gs"></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #gs')
+
+        const max_count = 128
+
+        const colors = {
+            first : "59,255,51".split(','),
+            end : "118,185,252".split(',')
+        }
+
+        let __t
+        let html_list = ""
+        for(let i = 0; i < max_count; i++) {
+            for( let j = 0; j < max_count; j++) {
+                __t = [] // rgb 순
+                for( let c = 0; c < colors.first.length; c++ ) {
+                    __t.unshift( Number(colors.first[c]) + Number( ( ( colors.end[c] - colors.first[c] ) / max_count ) * i ) )
+                }
+
+                html_list = html_list.concat(`<div class="cc" style="background-Color: rgb(${__t.pop()}, ${__t.pop()}, ${__t.pop()})"></div>`)
+            }
+        }
+        op_html.innerHTML = html_list
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex {
+            display: flex;
+            justify-content: center;
+        }
+        #ex #square{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 600px;
+            height: 100%;
+            border-collapse: collapse;
+        }
+
+        #ex #square .sq {
+            border: 1px solid black;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 350%;
+        }
+
+        /* num */
+        #ex #square .n { 
+            background-color: aliceblue;
+        }
+
+        /* 짝! */
+        #ex #square .v {
+            background-color:orange;
+        }
+
+        /* 와우 */
+        #ex #square .w {
+            background-color:brown;
+            color:white;
+        }
+
+        /* 아싸! */
+        #ex #square .e {
+            background-color:blueviolet;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>반복문_연습01</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="square"></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        /* 
+            과제 : 
+                1) 1 ~300 표현. 
+                2) 위의 숫자에서 3의배수에 숫자대신 짝!으로 표현.
+        */
+
+        const op_html = document.querySelector('#ex #square')
+        const config = {
+            init : 1,
+            max : 300,
+            // 아래 sign과 num의 배열길이는 같아야함.
+            sign_num : [3, 5],
+            sign : ["<div class=\"sq v\">짝!</div>", "<div class=\"sq w\">와우</div>"],
+            dup : "<div class=\"sq e\">아싸</div>",
+        }
+
+        let str;
+        
+        const sign_check = (i, str) => {
+            let isdupcount = 0
+            let addstr = ""
+            for( let p = 0; p < config.sign_num.length; p++ ) {
+                if( 0 === i % config.sign_num[p] ) {
+                    addstr = config.sign[p]
+                    isdupcount++
+                }
+            }
+
+            if( 1 < isdupcount )
+                addstr = config.dup
+            if ( 0 === isdupcount )
+                addstr = `<div class=\"sq n\">${i}</div>`
+
+            return addstr
+        }
+
+        for( let i = config.init; i <= config.max; i++ ) {
+            str = ``
+
+            str = str.concat(sign_check(i, str))
+            // console.log(str)
+            op_html.innerHTML = op_html.innerHTML.concat( str )
+        }
+    </script>
+</body>
+
+</html>
