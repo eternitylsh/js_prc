@@ -12,7 +12,18 @@
     <!--    <link rel="stylesheet" href="../css/init.css">-->
     <link rel="stylesheet" href="./css/styles.css">
     <style type="text/css">
-        
+        #ex #temperature table {
+            border-collapse: collapse;
+        }
+        #ex #temperature td {
+            border: 1px solid black;
+            width: 1.5rem;
+            height: 0.8rem;
+        }
+
+        /* #ex #temperature .td01 {
+            background-color: ;
+        }  여기서부터 작업.. 10-25;*/
     </style>
 </head>
 
@@ -104,17 +115,17 @@
 
                 if( temp_config.tr_idx.title === tridx ) {
                     if( 0 === i ) // 첫 행.
-                        td_list = td_list.concat(`<td>${temp_config.line_temps[i]}미만</td>`)
+                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i]}미만</td>`)
                     else if( (temp_config.con.td_area - 1) === i ) // 마지막 행.
-                        td_list = td_list.concat(`<td>${temp_config.line_temps[i]}이상</td>`)
+                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i-1]}이상</td>`)
                     else
-                        td_list = td_list.concat(`<td>${temp_config.line_temps[i-1]}이상 ~ ${temp_config.line_temps[i]}미만</td>`)
+                        td_list = td_list.concat(`<td colspan="${temp_config.area.b_count[i]}">${temp_config.line_temps[i-1]}이상 ~ ${temp_config.line_temps[i]}미만</td>`)
                 }
 
                 if( temp_config.tr_idx.length === tridx) {
                     // 두번째 열은 여기서.
                     for (let j = 0; j < temp_config.area.b_count; j++) {
-
+                        td_list = td_list.concat( `<td class></td>` )
                     }
                 }
                 
@@ -124,7 +135,7 @@
 
 
                     
-                }
+                
                 
             }
 
