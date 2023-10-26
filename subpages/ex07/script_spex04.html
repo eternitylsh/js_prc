@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>스무고개 수맞추기</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="res"></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #res')
+        
+        const game = {
+            area : {
+                min : 1,
+                max : 100
+            },
+            life: 6,
+            ans : -1,
+            info : {
+                start: '',
+                less: "정답은 입력하신 수보다 더 작은 수 입니다. ",
+                more: "정답은 입력하신 수보다 더 큰 수 입니다. ",
+                life: "남은기회 : ",
+                ans: "정답입니다. 정답 : ",
+            },
+        }
+
+        // init.
+        game.ans = Math.floor(Math.random() * game.area.max + game.area.min)
+        game.info.start = `${game.area.min} ~ ${game.area.max}의 수 중 정답인 수를 입력하세요`
+
+        let in_num = -1
+        let n_life = game.life
+
+        while(n_life + 1) {
+            in_num = +prompt(game.info.start, 0)
+
+            if( game.ans > in_num ) {
+                alert( game.info.more.concat(game.info.life, n_life) )
+                n_life--
+            }
+
+            if( game.ans < in_num ) {
+                alert( game.info.less.concat(game.info.life, n_life,)) // ` debug ans : ${game.ans}`) 
+                n_life--
+            }
+
+            if( game.ans === in_num ) {
+                alert( game.info.ans.concat(`${game.ans}`) )
+                break
+            }
+        }
+
+        if( game.ans === in_num ) 
+            op_html.innerHTML = `<h1>성공을 축하드립니다.</h1>`
+        else 
+            op_html.innerHTML = `<h1>기회를 모두 소진하셨습니다.</h1>`
+        
+
+    </script>
+</body>
+
+</html>

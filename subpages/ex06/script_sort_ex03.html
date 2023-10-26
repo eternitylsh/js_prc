@@ -119,16 +119,48 @@
             cards.innerHTML = cards.innerHTML.concat(`<div id="c${temp[i] + 1}" class="card"">${temp[i] + 1}</div>`)
         }
 
-        const Card_Sort = () => {
+        const Card_Sort = prev => {
+            let new_data = prev.slice()
+            let temp
+            let nonsortcount = 0
 
+            do {
+                nonsortcount = 0
+                temp = new_data[0]
+                // 오름차순으로만.. 일단..
+                for( let csi = 1; csi < new_data.length; csi++ ) {
+                    if( temp > new_data[csi] ) {
+                        temp = new_data[csi - 1]
+                        new_data[csi - 1] = new_data[csi]
+                        new_data[csi] = temp
+                        nonsortcount++
+                    }
+                    temp = new_data[csi] // 갱신..
+                }
+
+            } while( 0 < nonsortcount )
+
+            return new_data
         }
 
+        // 이건 일단 이렇게 작성함.
         const Card_Rerend = new_cards => {
-            
+
+            // 초기화;
+            cards.innerHTML = ""
+            // 카드 3장 드로우.
+            for( i = 0; i < max_card; i++ ) {
+                cards.innerHTML = cards.innerHTML.concat(`<div id="c${new_cards[i] + 1}" class="card"">${new_cards[i] + 1}</div>`)
+            }
         }
+
+        // 원래목적은 애니메이션으로 정렬된 위치로 가는것.
 
         btn.addEventListener("click", e => {
-            let 
+            let new_cdata = Card_Sort(temp)
+            // 아래 그려주는건 임시로;; 애니메이션으로 한다면 다르게 해야함.
+            Card_Rerend(new_cdata)
+            // console.log(new_cdata)
         })
 
     </script>

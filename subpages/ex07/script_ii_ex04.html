@@ -16,7 +16,7 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>p.181 while 관해서</h1>
+            <h1>title</h1>
         </div>
     </header>
     <content class="t_row">
@@ -40,14 +40,42 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        let i = 0;
-        // true : 4-2-7.html
-        // under code : 4-2-8.html
-        while (confirm('계속 진행하겠습니까?')) {
-            op_html.innerHTML = `${i}번째 반복합니다.`
-            i++
-            if( 1000 < i ) break
+        const i1 = +prompt("어디부터 계산할까요?, 1")
+        const i2 = +prompt("어디 짝수까지 계산할까요?, 1")
+
+        // 점검..
+        if( i2 % 2 != 0 ) {
+            alert( "입력 수가 짝수가 아닙니다. ", i2 )
         }
+
+        let sum = 0
+
+        // 짝수까지의 합..
+        // for(  let i = i1; i <= i2; i++ ) {
+
+        //     if( 0 === i % 2 ) {
+        //         sum += i
+        //         op_html.innerHTML = op_html.innerHTML.concat(
+        //             `<p>${i1} 부터 ${i}까지의 합은 ${sum}</p>`
+        //         )
+        //     }
+            
+        // }
+
+        for(  let i = i1; i <= i2; i++ ) {
+
+            if( 0 !== i % 2 ) continue ; // 반대조건으로 해서 continue활용하는 방법도 있음.
+             
+            sum += i
+            op_html.innerHTML = op_html.innerHTML.concat(
+                `<p>${i1} 부터 ${i}까지의 합은 ${sum}</p>`
+            )
+            
+
+        }
+            
+
+        op_html.innerHTML = op_html.innerHTML.concat(`<h1><strong><mark>총합은 : ${sum}</mark></strong></h1>`)
     </script>
 </body>
 

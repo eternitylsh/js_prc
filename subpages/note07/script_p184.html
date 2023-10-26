@@ -40,14 +40,17 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        let i = 0;
-        // true : 4-2-7.html
-        // under code : 4-2-8.html
-        while (confirm('계속 진행하겠습니까?')) {
-            op_html.innerHTML = `${i}번째 반복합니다.`
-            i++
-            if( 1000 < i ) break
+        for (let i = 1; true; i++) {
+            alert( `${i} 번째 반복문입니다.`)
+
+            const iscon = confirm(`계속 하시겠습니까?`)
+            if (iscon)
+                break
+
+            alert(`프로그램 종료`)
         }
+
+        op_html.innerHTML = `반복 실행된 횟수는 ${i} 입니다.`
     </script>
 </body>
 

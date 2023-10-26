@@ -16,7 +16,7 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>p.181 while 관해서</h1>
+            <h1>p.187 별 피라미드</h1>
         </div>
     </header>
     <content class="t_row">
@@ -40,14 +40,33 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        let i = 0;
-        // true : 4-2-7.html
-        // under code : 4-2-8.html
-        while (confirm('계속 진행하겠습니까?')) {
-            op_html.innerHTML = `${i}번째 반복합니다.`
-            i++
-            if( 1000 < i ) break
+        const star = "*" // "✨"
+        const space = " "
+        const max_length = 14
+
+        let stars = ""
+        let console_stars = ""
+
+        for(let i = 0; i < max_length; i++) {
+
+            for(let j = 0; (max_length - i) > j; j++) {
+                stars = stars.concat( `&nbsp` )
+                console_stars = console_stars.concat( space )
+            }
+
+            for(let k = 0; k < (2 * i + 1); k++) {
+                stars = stars.concat( star )
+                console_stars = console_stars.concat( star )
+            }
+
+            // ...
+                
+            stars = stars.concat( `<br>` )
+            console_stars = console_stars.concat( '\n' )
         }
+
+        op_html.innerHTML = op_html.innerHTML.concat(`${stars}`)
+        console.log( console_stars )
     </script>
 </body>
 

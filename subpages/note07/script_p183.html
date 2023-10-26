@@ -41,12 +41,11 @@
         const op_html = document.querySelector('#ex')
 
         let i = 0;
-        // true : 4-2-7.html
-        // under code : 4-2-8.html
-        while (confirm('계속 진행하겠습니까?')) {
-            op_html.innerHTML = `${i}번째 반복합니다.`
+        const arr = [1, 2, 3, 4, 5]
+
+        while (i < arr.length) {
+            op_html.innerHTML = op_html.innerHTML.concat(`<p>${i} : ${arr[i]}</p>`)
             i++
-            if( 1000 < i ) break
         }
     </script>
 </body>
