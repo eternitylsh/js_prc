@@ -101,12 +101,16 @@
 
             while( max_card > arr.length ) {
                 tempnum = Math.floor(Math.random() * max_card)
-                if( 0 < arr.length ) {
-                    if( undefined === arr.find( e => tempnum === e ) )
-                        arr.push(tempnum)
-                }
-                else
+                
+                if( undefined === arr.find( e => tempnum === e ) )
                     arr.push(tempnum)
+
+                // 아래 코드 없어도 잘 돌아간다. 이유는 find기능에서 빈배열의 경우 어떻게 결과가 나오는지
+                // 장담할 수 없어서.. 근데 find기능은 이래도 잘 결과를 내놓음.
+                    // if( 0 < arr.length ) {
+                // }
+                // else
+                    // arr.push(tempnum)
             }
             
             return arr
