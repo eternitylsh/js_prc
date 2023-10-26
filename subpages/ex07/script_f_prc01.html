@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>함수에 관해서...</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex')
+
+        const sp_f1 = text => text ?? alert("빈 변수..")
+
+        // const sp_f2 = test="base" => text // 이러면 문법오류가 터짐;; () 필수.
+        const sp_f2 = (test="base") => text // text를 null로 들어갈 경우 기본값이 적용.
+        const sp_f3 = text => text || "or 값으로..." 
+        // 이것도 좋은데 false나 0으로 하는 의도로는 기본값이 나오기에 문제가...
+        // 강제에러 띄우기
+        // 아래 함수는 배열만 들어감.
+        // 옵셔널 체이닝 undefined 가 생길경우....
+        // 별도 검색해서 기타 등등..
+        const sp_f4 = text => {
+            // 아래 변수밑에 ?가 생겼다. 이건... 어떠한 오류가 생겨도 무시.. 라는..
+            const print = (text + "").split(",")
+            console.log(print)
+        }
+    
+    </script>
+</body>
+
+</html>

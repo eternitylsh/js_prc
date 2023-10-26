@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex #cards {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 80%;
+            height: 100%;
+        }
+
+        #ex #cards .card {
+            width: 150px;
+            height: 180px;
+            border: 3px solid black;
+            margin: 1.2rem;
+
+            font-size: 5rem;
+            text-align: center;
+            line-height: 10rem;
+        }
+
+        #ex #cards #c1 {
+            
+        }
+
+        #ex #cards #c2 {
+            
+        }
+
+        #ex #cards #c3 {
+            
+        }
+
+        #ex #sort {
+            display: flex;
+            justify-content: center;
+        }
+
+        #ex #sort button {
+            margin: 1rem;
+            width: 10rem;
+            height: 2.3rem;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>카드정렬</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="cards">
+                </div>
+                <div id="sort">
+                    <button type="button">SORT</button>
+                </div>
+
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const cards = document.querySelector('#ex #cards')
+        const btn = document.querySelector('#ex #sort button')
+
+        const max_card = 3
+        let i = 0;
+
+        const Gen_RandNum = () => {
+            let arr = []
+            let ri = 0
+            let tempnum = 0
+            let fbool = false
+
+            while( max_card > arr.length ) {
+                tempnum = Math.floor(Math.random() * max_card)
+                if( 0 < arr.length ) {
+                    if( undefined === arr.find( e => tempnum === e ) )
+                        arr.push(tempnum)
+                }
+                else
+                    arr.push(tempnum)
+            }
+            
+            return arr
+        }
+
+        let temp = Gen_RandNum()
+        
+        // 카드 3장 드로우.
+        for( i = 0; i < max_card; i++ ) {
+            cards.innerHTML = cards.innerHTML.concat(`<div id="c${temp[i] + 1}" class="card"">${temp[i] + 1}</div>`)
+        }
+
+        const Card_Sort = () => {
+
+        }
+
+        const Card_Rerend = new_cards => {
+            
+        }
+
+        btn.addEventListener("click", e => {
+            let 
+        })
+
+    </script>
+</body>
+
+</html>
