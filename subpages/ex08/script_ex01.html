@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex #l_view {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #ex #l_view .l_card {
+            border: 1px solid black;
+            border-radius: 1rem;
+            width: 5rem;
+            height: 5rem;
+            margin: 0.5rem;
+
+            font-size: 3rem;
+            text-align: center;
+            line-height: 5rem;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>로또</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="l_view"></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #l_view')
+
+        const Lotto = {
+            l_nums: [],
+            max_len: 6,
+            gen_num : {
+                min: 1,
+                max: 45,
+                Gen_Num: (max, min) => ~~(Math.random() * (max - min) + min)
+            },
+            GenBgColor: () => {
+                let rgb = "#"
+                let max = 3
+                let temp, sum = 0
+
+                for( let i = 0; i < max; i++ ) {
+                    temp = Lotto.gen_num.Gen_Num( 255, 0 )
+                    rgb = rgb.concat( temp.toString(16) )
+                    sum += temp
+                }
+                return rgb
+            }
+        }
+
+        const Lotto_Data_List = {
+            
+        }
+
+        let i = 0;
+
+        // init and etc func.
+        const Gen_L_Nums = len => {
+            let list = []
+            let temp
+            while( list.length < len ) {
+                temp = Lotto.gen_num.Gen_Num( Lotto.gen_num.max, Lotto.gen_num.min )
+                if( undefined === list.find( e => e === temp ) )
+                    list.push( temp )
+            }
+            console.log(list)
+            return list
+        }
+
+        const L_View = l_num => {
+            let draw_html = ""
+            
+            for( i = 0; i < Lotto.l_nums.length; i++ ) {
+                draw_html = draw_html.concat( `<div class="l_card" style="background-color: ${Lotto.GenBgColor()}">${l_num[i]}</div>` )
+            }
+
+            op_html.innerHTML = draw_html
+        }
+
+        // Generate.
+        Lotto.l_nums = Gen_L_Nums(Lotto.max_len)
+
+        // View
+        L_View(Lotto.l_nums)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>확률 통계</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="res">
+
+                </div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #res')
+
+        const gcount = {
+            total_count: 1000000,
+            counts: [0, 0, 0, 0, 0, 0],
+            gen_num: {
+                max: 6,
+                min: 1,
+                weights: [16, 16, 16, 16, 16, 16],
+                Gen_RandNum: () => ~~( Math.random() * ((gcount.gen_num.max + 1)-gcount.gen_num.min) + gcount.gen_num.min),
+            },
+            gen_per: {
+                ele: [0, 0, 0, 0, 0, 0],
+                ele_avg: 0.0,
+                target: 3,
+                GetPer_Avg: per_arr => (per_arr.reduce( (a,c) => +a + +c ) / per_arr.length),
+                GetPercent: ( t_count, targetC ) => ( ( targetC / t_count ) * 100 ).toFixed(4),
+                GetPer_Avg_diff: ( __avg, t_per) => (__avg - t_per).toFixed(2),
+            },
+            err_count: 0,
+        }
+
+        let t_num = 0
+        let i = 0;
+        gcount.err_count = 0
+
+        for(; i < gcount.total_count; i++) {
+            t_num = gcount.gen_num.Gen_RandNum()
+            gcount.counts[t_num - 1]++
+
+            if( gcount.gen_num.min > t_num && gcount.gen_num.max < t_num )
+                gcount.err_count++
+        }
+
+        let res = ""
+
+        for( i = 0; i < gcount.counts.length; i++) {
+            gcount.gen_per.ele[i] = gcount.gen_per.GetPercent(gcount.total_count, gcount.counts[i])
+            res = res.concat( `${i}: ${gcount.counts[i]}번 | ${gcount.gen_per.ele[i]}%<br>` )
+        }
+
+        // 여기서 평균설정.
+        gcount.gen_per.ele_avg = gcount.gen_per.GetPer_Avg( gcount.gen_per.ele )
+
+        res = res.concat(`<hr>
+주사위 ${gcount.gen_per.target}이 평균대비 더 출현한 정도: ${gcount.gen_per.GetPer_Avg_diff(gcount.gen_per.ele_avg, gcount.gen_per.ele[gcount.gen_per.target - 1])}%
+<br><br>`)
+
+        res = res.concat(`전체 던진 횟수 1+2+3+4+5+6 = ${gcount.counts.reduce( (a,c) => +a + +c )}번 / 에러: ${gcount.err_count}<hr>`)
+
+        res = res.concat(`디버깅: 23/0/ 조작수:0/ 외부평균값: ${gcount.gen_per.ele_avg.toFixed(4)}`)
+
+        op_html.innerHTML = res
+
+
+    </script>
+</body>
+
+</html> 
