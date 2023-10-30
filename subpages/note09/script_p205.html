@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>랜덤 자동생성된 배열의 최소값</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script src="./js/global.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex')
+
+        /*
+            원래 책에서는....
+            const min = array => {
+                let output = array[0]
+                let item
+                for( let i = 0; i < array.length; i++) {
+                    item = array[i]
+                    output = output > item ? item : output
+                }
+                return output
+            }
+            이와 같이 코드 구성으로 간단하게 작성해서 사용.
+            그냥 여기서는 Math.min.apply(null, array) 등의 방법을 씀.
+        */
+
+        const arr_min = arr => Math.min.apply(null, arr)
+
+        const testarr = ArrRandrange(8, 1, 300)
+        op_html.innerHTML += `${testarr} 중에서 `
+        op_html.innerHTML += `최소값 : ${arr_min(testarr)}`
+    </script>
+</body>
+
+</html>

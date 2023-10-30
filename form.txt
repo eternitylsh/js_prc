@@ -41,6 +41,7 @@
     <!-- 마크다운 문법적용을 위한 스크립트들 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script src="./js/global.js"></script>
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
     </script>
@@ -175,3 +176,22 @@ footer p {
         background-color: #a05ce9;
     }
 }
+
+
+
+=================================================================================
+
+
+// global.js 전역 자바스크립트 템플릿 작성.
+
+
+const strout = {
+    html: instr => {
+        return `${instr}<br>`
+    },
+    clog: instr => {
+        return `${instr}\n`
+    }
+}
+
+const ArrArange = (min, max) => [...Array(max).keys()].map(key => key + min)

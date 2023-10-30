@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+
+        #main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #main div {
+            margin: 0 auto;
+        }
+
+        #main #com {
+            width: 20rem;
+            height: 20rem;
+            
+            background-image: url('./res/scissor.png');
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>가위, 바위, 보 게임</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="opt">
+                    <button id="gplay" onclick="">게임화면</button>
+                    <button id="res" onclick="">결과 및 통계</button>
+                    <hr>
+                </div>
+                <div id="main">
+
+                </div>
+                <div id="exit"><button type="button" onclick="game.OnGameExit()">종료</button></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #main')
+        const exit_html = document.querySelector('#ex #exit')
+
+        /*
+            -- 게임플레이 상태표.
+            -4 : game stop 종료.
+            -1 : 대기
+            0 : 시작
+            1 : 진행중
+
+            -- 플레이 인덱스
+            0 : 가위
+            1 : 바위
+            2 : 보
+
+            -- 플레이 결과 상태.
+            0 : 컴퓨터 승
+            1 : 비김
+            2 : 플레이어 승
+        */
+
+        const game = {
+            ele: ['가위', '바위', '보'],
+            src: [
+                "./res/scissor.png",
+                "./res/rock.png",
+                "./res/paper.png",
+            ],
+            stop : '그만',
+            info: {
+                title: "",
+                res: {
+                    count: "회차",
+                    com: "컴퓨터 : ",
+                    player: "플레이어 : ",
+                    state: [
+                        "컴퓨터가 이겼습니다.",
+                        "비겼습니다.",
+                        "플레이어가 이겼습니다.",
+                    ],
+                    wincount: {
+                        com: "컴퓨터",
+                        player: "플레이어",
+                        count: "승",
+                    },
+                    winper: `플레이어 승률: `,
+                    // 아래 컴퓨터와 플레이어가 어떻게 낼까를 승리조건을 맞춘 코드
+                    wincode: {
+                        com: ['02', '10', '21'],
+                        player: ['01', '12', '20'],
+                    }
+                },
+            },
+            wincount: {
+                com: 0,
+                player: 0,
+            },
+            state: {
+                com: -1,
+                loopidx: 0,
+                loop: null,
+                looptime: 250,
+                player: -1,
+            },
+            game_res: -1,
+            play_count: 0,
+            win_per: 0,
+
+            Init: () => {
+                game.Init_temp()
+
+                game.play_count = 0
+                game.win_per = 0
+
+                game.wincount.com = 0
+                game.wincount.player = 0
+            },
+
+            Init_temp: () => {
+                game.state.com = -1
+                game.state.player = -1
+
+                game_res = -1
+            },
+
+            draw_G_I_Play: () =>  `
+                <div id="com"></div>
+                <div id="menu">
+                    ${game.info.title}<br>
+                    <button type="button" onclick="game.OnGStart(0)">가위</button>
+                    <button type="button" onclick="game.OnGStart(1)">바위</button>
+                    <button type="button" onclick="game.OnGStart(2)">보</button>
+                </div>
+            `,
+
+            // gen_computer result
+            Gen_Com_Play: () => Math.floor(Math.random() * game.ele.length),
+
+            // get player win percent func
+            Get_Player_win_percent: (p_count, pw_count) => ((pw_count / p_count) * 100).toFixed(1),            
+
+            draw_Result: () => {
+                return `
+                    <br>
+                `
+            },
+
+            // game play.
+
+            // Init and Game Title.
+            OnTitle_Init: () => {
+                op_html.innerHTML = game.draw_G_I_Play()
+                if( null === game.state.loop ) {
+                    game.state.loop = setInterval( () => {
+                        game.state.loopidx = game.ele.length <= game.state.loopidx ? 0 : game.state.loopidx
+
+                        document.querySelector('#main #com').style.backgroundImage = `url(${game.src[game.state.loopidx]})`
+                        // console.log("call : ", obj)
+                        game.state.loopidx++                
+                    }, game.state.looptime )
+                }
+            },
+
+            // start.
+            OnGStart: pselect => {
+                game.state.player = pselect
+
+                clearInterval( game.state.loop )
+                game.state.loop = null
+                
+                game.On_GStart()
+            },
+
+            // game one set result.
+            On_GStart: () => {
+                game.play_count++
+                res = ""
+
+                //computer result.
+                game.state.com = game.Gen_Com_Play()
+
+                // 1차 결과 출력 설정.
+                res = res.concat(
+                    `
+    [${game.play_count}${game.info.res.count}]<br>
+    ${game.info.res.com}${game.ele[game.state.com]}<br>
+    ${game.info.res.player}${game.ele[game.state.player]}<br>`
+                )
+
+                // 2차를 위한 결과 조립.
+                // 0 : 가위, 1: 바위, 2: 보
+                // 결과 상태 : 0 : 컴퓨터승, 1: 비김, 2: 플레이어 승.
+                // 비길경우;;
+
+                // 가위 바위 보 순..
+
+                // 비겼을때는 그냥 비긴결과체크하고 빠져나감..
+                if( game.state.com === game.state.player ) {
+                    game.game_res = 1
+                }
+                else { // 이기거나 질때는 아래처럼 코드비교로 결과를냄.
+                    // com(1) + player(2)
+                    let res_check = e => e === `${game.state.com}${game.state.player}`
+
+                    if( undefined !== game.info.res.wincode.com.find(res_check) ) {
+                        game.game_res = 0
+                        game.wincount.com++ // 승리이기에..
+                    }
+
+                    if( undefined !== game.info.res.wincode.player.find(res_check) ) {
+                        game.game_res = 2
+                        game.wincount.player++ // 승리이기에..
+                    }
+                }
+
+                // 승률 업데이트
+                game.win_per = game.Get_Player_win_percent(game.play_count, game.wincount.player)
+                
+                res = res.concat(`
+    ${game.info.res.state[game.game_res]}<br>
+    ${game.info.res.wincount.com} ${game.wincount.com}${game.info.res.wincount.count}, ${game.info.res.wincount.player} ${game.wincount.player}${game.info.res.wincount.count}<br>
+    ${game.info.res.winper} ${game.win_per}%<br>
+                `)
+
+                res += `<button type="button" onclick="game.OnTitle_Init()">다시</button>`
+
+                op_html.innerHTML = res
+            },
+
+            
+
+            // game end.
+            OnGameExit: () => {
+                op_html.innerHTML = "이용해주셔서 감사합니다."
+                exit_html.innerHTML = ""
+            },
+        }
+
+        // init.
+        game.info.title = `${game.ele} 중 하나를 선택하세요.`;
+        game.Init()
+
+        // game start.
+        // 시작 대기.
+        game.OnTitle_Init()
+
+    </script>
+</body>
+
+</html>
