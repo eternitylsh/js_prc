@@ -22,9 +22,7 @@
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                
             </div>
         </div>
     </content>
@@ -43,42 +41,20 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
+        const earnings = (name, wage=8950, hours=40) => `\
+            # ${name} 님의 급여 정보 <br>\
+            - 시급 : ${wage}원<br>\
+            - 근무 시간: ${hours}시간<br>\
+            - 급여: ${wage * hours}원<br>\
+            <br>\
+        `
+        
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
+        op_html.innerHTML += earnings('구름')
 
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
+        op_html.innerHTML += earnings('별', 10000)
 
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
-        }
-
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
-            }
-        }
-
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        op_html.innerHTML += earnings('인성', 10000, 52)
     </script>
 </body>
 

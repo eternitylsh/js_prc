@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>목표 타이머</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <div id="submit">
+                    <form action="./script_ex02.html" method="get">
+                        <div id="setupnum">
+                            <label for="t_num">얼마까지 숫자를 상승 시킬까요?
+                                <input type="number" name="t_num" id="target_num" placeholder="12" required>
+                            </label>
+                        </div>
+                        <div id="interval">
+                            <label for="t_interval">몇초 간격으로 상승 시킬까요?
+                                <input type="number" name="t_interval" id="target_ivl" placeholder="0.5" required step="0.1">
+                            </label>
+                        </div>
+                        <div id="startbtn">
+                            <input type="submit" value="시작!">
+                        </div>
+                    </form>
+                    <button type="button" onclick="reset()">리셋</button>
+                </div>
+                <div id="res">
+
+                </div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script src="./js/global.js"></script>
+    <script type="text/javascript">
+        const op_html = document.querySelector('#ex #res')
+
+        let nownum = 1
+        let I_id = null
+
+        const reset = () => {
+            nownum = 1
+            
+            if( null !== I_id ) clearInterval( I_id )
+            I_id = null
+
+            op_html.innerHTML = ""
+        }
+ 
+        document.querySelector('#ex #submit form').onsubmit = () => {
+
+
+
+            let t_num = document.querySelector('#target_num').value
+            let ivl_time = document.querySelector('#target_ivl').value
+
+            I_id = setInterval(() => {
+            
+                if( t_num < nownum ) {
+                    HtmlInObj( op_html, `<h1 style="color: red">목표값 ${nownum - 1}가 되었습니다.</h1>` )
+                    clearInterval( I_id )
+                }
+                else
+                    op_html.innerHTML = `<h1>${nownum++} 입니다.</h1>`
+            }, ivl_time * 1000)
+
+            return false
+        }
+        
+        
+    </script>
+</body>
+
+</html>

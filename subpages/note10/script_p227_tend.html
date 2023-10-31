@@ -16,15 +16,13 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>타이머 함수2 (제거방법)</h1>
         </div>
     </header>
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                
             </div>
         </div>
     </content>
@@ -43,42 +41,31 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
+        // 만일의 가능성을 둔다는 생각으로 두개의 변수를 
+        const t_ids = [null, null]
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
-
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
-
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
-        }
-
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
+        let str = ""
+        function fn1() {
+            // str = "우와 비가오네!!! (취소하면 햇살이 안뜬다.)"
+            str = "비가 오는뎁.. 밖으로 나갈까요?"
+            HtmlInObj(op_html, strout.html(str))
+            if( !confirm( str ) ) {
+                let id = t_ids[1]
+                clearTimeout(id) // 막 작성한..
+                console.log(`타이머 제거 : ${id}`)
             }
+                
         }
 
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        const fn2 = () => {
+            // str = "우와 햇살이 눈부시다!!!"
+            str = "우산을 준비해봅시다."
+            HtmlInObj(op_html, strout.html(str))
+            alert( str )
+        }
+
+        t_ids[0] = setTimeout(fn1, 2 * 1000)
+        t_ids[1] = setTimeout(fn2, 4 * 1000)
     </script>
 </body>
 

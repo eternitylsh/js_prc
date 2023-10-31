@@ -16,15 +16,13 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>화살표함수 조합 함수체이닝.</h1>
         </div>
     </header>
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                
             </div>
         </div>
     </content>
@@ -43,42 +41,13 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
+        let nums = ArrArange(1, 10)
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
+        nums
+            .filter( e => !(e % 2) )
+            .map(e => e * e)
+            .forEach(e => HtmlInObj(op_html, `${e} <br>`));
 
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
-
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
-        }
-
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
-            }
-        }
-
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
     </script>
 </body>
 

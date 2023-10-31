@@ -16,15 +16,13 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>객체에 관해서</h1>
         </div>
     </header>
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                
             </div>
         </div>
     </content>
@@ -43,42 +41,32 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
+        const arr = ArrArange(1, 5)
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
-
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
-
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
+        function fn(text='쌀밥') {
+            HtmlInObj(op_html, strout.html(text + " 정말 맛있음"))
+            return 10000
         }
 
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
-            }
+        const obj = {
+            제품명: '망고',
+            유형: '당절임',
+            성분: '망고, 설탕, 메타중아황산나트륨, 치자황색소',
+            원산지: '필리핀',
+            바코드: arr,
+            기능: fn,
+            검증: function () {return this}
         }
 
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        HtmlInObj(op_html, strout.html(obj["유형"]))
+        HtmlInObj(op_html, strout.html(obj.성분))
+        HtmlInObj(op_html, strout.html(obj.바코드))
+        HtmlInObj(op_html, strout.html(obj.기능()))
+        HtmlInObj(op_html, strout.html(obj.기능('호떡')))
+        // 배운대와는 어긋나지만.. 일단.. HTML상에 표현을 위해서;;
+        HtmlInObj(op_html, strout.html(JSON.stringify(obj.검증())))
+        
+        // HtmlInObj(op_html, JSON.stringify(obj))
     </script>
 </body>
 

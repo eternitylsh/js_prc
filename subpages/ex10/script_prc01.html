@@ -16,15 +16,13 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>매개변수 받는 방법</h1>
         </div>
     </header>
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                
             </div>
         </div>
     </content>
@@ -43,42 +41,21 @@
     <script type="text/javascript">
         const op_html = document.querySelector('#ex')
 
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
+        const arr = [11, 22, 33, 44, 55]
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
+        op_html.innerHTML += `1 ${strout.html(arr)}`
+        op_html.innerHTML += `2 ${strout.html(...arr)}`
 
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
-
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
+        const fn1 = ar => {
+            op_html.innerHTML += `3 ${ar}<br>`
         }
 
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
+        fn1(11, 22, 33, 44, 55)
 
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
-            }
+        const fn2 = (...ar) => {
+            op_html.innerHTML += `4 ${ar}<br>`
         }
-
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        fn2(11, 22, 33, 44, 55)
     </script>
 </body>
 

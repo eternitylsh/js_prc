@@ -50,6 +50,11 @@
         user-select:none;
     }
 
+    .arrow:active {
+        border-radius: 50%;
+        box-shadow: -0.5rem 0.1rem 3rem white;
+    }
+
     </style>
 </head>
 
@@ -90,22 +95,65 @@
     <script src="./js/global.js"></script>
     <script type="text/javascript">
         const op_html = document.querySelector('#ex #outnum')
-        const control_html = document.querySelector('#')
+        const control_html = document.querySelector('#ex #control')
 
         const num_plus = innum => ++innum
         const num_minus = innum => --innum
 
-        const is_c_push = false
+        const w_events = [null, null]
+        const m_events = [null, null]
+
+        let is_c_push = false
 
         const nump_inf = () => {
-            op_html.innerHTML = num_plus(op_html.innerHTML)
+            op_html.innerHTML = num_plus(+op_html.innerHTML)
         }
 
         const num_m_inf = () => {
             op_html.innerHTML = num_minus(+op_html.innerHTML)
         }
 
+        
+        const chtml_objs = control_html.querySelectorAll('span')
 
+        const WaitPlayEvent = idx => {
+            if( is_c_push ) {
+                w_events[idx] = setTimeout( EventInterval(idx), 1500 )
+            }
+        }
+
+        const EventInterval = idx => {
+            
+            if ( 0 === idx )
+                m_events[idx] = setInterval( nump_inf, 100 )
+            else if( 1 === idx )
+                m_events[idx] = setInterval( num_m_inf, 100 )
+            else {}
+            
+        }
+
+        const InitInterval = idx => {
+            
+            clearTimeout( w_events[idx])
+            clearInterval(m_events[idx])
+
+            w_events[idx] = null
+            m_events[idx] = null
+        }
+
+        for( let i = 0; i < chtml_objs.length; i++) {
+            chtml_objs[i].addEventListener( "mousedown", () => {
+                is_c_push = true
+                EventInterval(i)
+            } )
+            chtml_objs[i].addEventListener( "mouseup", () => {
+                is_c_push = false
+                InitInterval(i)
+            } )
+        }
+
+       
+        // 
 
         // for( let i = 0; i < )
     </script>

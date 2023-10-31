@@ -11,20 +11,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
     <!--    <link rel="stylesheet" href="../css/init.css">-->
     <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex #circle {
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: gray;
+
+            width: 10rem;
+            height: 10rem;
+        }
+    </style>
 </head>
 
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>깜빡깜빡</h1>
         </div>
     </header>
     <content class="t_row">
         <div class="t_cell">
             <div id="ex">
-                <div id="out8nums">
-
-                </div>
+                <div id="circle"></div>
+                <div id="count"></div>
             </div>
         </div>
     </content>
@@ -41,44 +50,7 @@
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     <script src="./js/global.js"></script>
     <script type="text/javascript">
-        const op_html = document.querySelector('#ex')
-
-        // 참고용..
-        // C++언어로 예상 pos : idx로 생각할 것.
-        // for (int i=0;i<=weights.length;i++) {
-        //     weight_random –= weights[i];
-        //     if (weight_random<=0) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
-
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
-
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
-
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
-        }
-
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
-                }
-            }
-        }
-
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        const op_html = document.querySelector('#ex #circle')
     </script>
 </body>
 
