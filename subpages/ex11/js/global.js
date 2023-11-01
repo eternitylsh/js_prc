@@ -1,8 +1,11 @@
 
 
 const strout = {
-    html: instr => {
-        return `${instr}<br>`
+    html_ln(obj, ...instr) {
+        obj.innerHTML += `${instr}<br>`
+    },
+    html(obj, ...instr) {
+        obj.innerHTML += `${instr}<br>`
     },
     clogln: instr => {
         return `${instr}\n`
@@ -22,5 +25,3 @@ const Gen_rdNumber = (max, min) => {
 }
 
 const ArrRandrange = (len, min, max) => Array(len).fill().map( x => x = Gen_rdNumber(300, 1) )
-
-const HtmlInObj = (obj, ...html) => obj.innerHTML += html

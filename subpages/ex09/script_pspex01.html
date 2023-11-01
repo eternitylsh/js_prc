@@ -16,7 +16,7 @@
 <body class="table h_scene">
     <header class="t_row">
         <div class="t_cell">
-            <h1>title</h1>
+            <h1>가중치 확률 테스트</h1>
         </div>
     </header>
     <content class="t_row">
@@ -53,32 +53,48 @@
         //     }
         // }
 
-        const len = 4
-        const weights = [10, 15, 20, 55] // 총합 100 필수;;
+        const RandSet = { // 길이는 가중치길이로..
+            t_nums: [11, 22, 33, 44],
+            weights: [10, 15, 20, 55], // 총합 100 필수;;
+            max: 100,
+            min: 1,
+            Get_RandNum (max, min) {
+                let array = new Uint8Array(2);
+                crypto.getRandomValues(array);
 
-        const Get_RandNum = () => {
-            let array = new Uint8Array(2);
-            crypto.getRandomValues(array);
+                // 소금치는 처리. 의미는 없어도..
+                return ( ( array[1] + (array[0] * 3)) % (max - min) ) + min // 1 ~ 45
+            },
+            GetRandWeightData () {
 
-            // 소금치는 처리. 의미는 없어도..
-            return ( ( array[1] + (array[0] * 3)) % 45 ) + 1 // 1 ~ 45
-        }
-
-        const GetRandWeightData = (max, min) => {
-            let weight_random = Get_RandNum()
-
-            for(let i = 0; i < weights.length; i++) {
-                weight_random -= weights[i]
-                if( weight_random <= 0 ) {
-                    idx = i
-                    break
+                if( this.t_nums.length !== this.weights.length ) {
+                    console.error(`가중치 대상(${this.t_nums.length})과 가중치(${this.weights.length}) 둘의 데이터 크기가 다릅니다.`)
+                    return -1
                 }
-            }
+
+                let weight_random = this.Get_RandNum(this.max, this.min)
+                let idx = -1
+
+                // 추후 더 나은 코드 찾아보거나 확인;;
+                for(let i = 0; i < this.weights.length; i++) {
+                    weight_random -= this.weights[i]
+                    if( weight_random <= 0 ) {
+                        idx = i
+                        break
+                    }
+                }
+
+                return idx
+            },
         }
 
-        let fmax = 100
-        let fmin = 0
-        GetRandWeightData(fmax, fmin)
+        // 데이터 통계...
+        const RS_Datas = {
+
+        }
+
+        const ridx = RandSet.GetRandWeightData()
+        HtmlInObj(op_html, strout.html(`<h1>${RandSet.t_nums} 중에 선택된 수는 : ${RandSet.t_nums[ridx]}, 여기서 확률은 : ${RandSet.weights[ridx]}% </h1>`))
     </script>
 </body>
 
