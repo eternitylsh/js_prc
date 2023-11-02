@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="../css/init.css">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        #ex div {
+            width: 5rem;
+            height: 5rem;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+
+<body class="table h_scene">
+    <header class="t_row">
+        <div class="t_cell">
+            <h1>로드갱신</h1>
+        </div>
+    </header>
+    <content class="t_row">
+        <div class="t_cell">
+            <div id="ex">
+                <h1>안녕하세요!!!</h1>
+                <button type="button" onclick="ch()">구형변경</button>
+                <button id="new">신형변경</button>
+                <div></div>
+            </div>
+        </div>
+    </content>
+    <footer class="t_row">
+       <div class="t_cell">
+        <hr>
+        <p>
+            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+        </p>
+       </div>
+    </footer>
+    <!-- 마크다운 문법적용을 위한 스크립트들 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script src="./js/global.js"></script>
+    <script type="text/javascript">
+        const square = document.querySelector('#ex div')
+        const btn = document.querySelector('#ex #new')
+
+        const ch = () => {
+            const h1 = document.querySelectorAll("h1")[1]
+            //  h1.innerHTML = "변경되었습니다."
+            h1.textContent = "<mark><em>변경되었습니다.</em></mark>"
+        }
+
+        btn.addEventListener('click', ch)
+        square.addEventListener('click', ch)
+        const h1 = document.querySelector('#ex h1')
+        h1.addEventListener('click', ch)
+
+        // 문서 로드 종료후에 실행.
+        // document.addEventListener("DOMContentLoaded", ch)
+
+    </script>
+</body>
+
+</html>
