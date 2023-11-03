@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 여기서는 일단 css, js 사전템플릿없는 임시 템플릿으로.. 이유는 csstext적용이 이유. -->
+    <title>Layout</title>
+    <style src="./css/resets.css" type="text/css"></style>
+    <style type="text/css">
+        html { 
+            width: 100%; height: 100%;
+            
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+
+        const Layout = {
+            
+            CSS: {
+                OnSetCSSText (obj, csstext) {
+                    obj.style.cssText += csstext
+                },
+
+                // obj
+                header (obj) { this.OnSetCSSText(obj, `\
+                        height: 10%;\
+                        background-color: aqua;\
+                    `) },
+
+                nav (obj) { this.OnSetCSSText(obj, `\
+                        width: 18%;\
+                        background-color: blueviolet;\
+                    `) },
+                section (obj) { this.OnSetCSSText(obj, `\
+                    width: 62%;\
+                    background-color: beige;\
+                    `) },
+                aside (obj) { this.OnSetCSSText(obj, `\
+                    width: 20%;\
+                    background-color: burlywood;\
+                    `) },
+
+                footer (obj) { this.OnSetCSSText(obj, `\
+                    height: 10%;\
+                    background-color: gray;\
+                    `) },
+
+                // class
+                c_h_scene (obj) { this.OnSetCSSText(obj, `width: 100%;`) },
+                c_f_scene (obj) { this.OnSetCSSText(obj, `width: 100%; height: 100%;`) },
+                c_t_width (obj) { this.OnSetCSSText(obj, `width: 100%;` ) },
+
+                c_table (obj) { this.OnSetCSSText(obj, `display: table;`) },
+                c_t_row (obj) { this.OnSetCSSText(obj, `display: table-row;`) },
+                c_t_cell (obj) { this.OnSetCSSText(obj, `display: table-cell;`) },
+            },
+
+            // init.
+            OnInit() {
+                console.log("Layout Init")
+                this.OnCreateBodyElement()
+
+                                
+            },
+            // header
+            OnCB_Header() {
+                const h_div = document.createElement('div')
+                this.CSS.c_t_row(h_div)
+                this.CSS.c_t_width(h_div)
+                
+
+                const header = document.createElement('header')
+                this.CSS.header(header)
+                this.CSS.c_t_cell(header)
+                this.CSS.c_t_width(header)
+
+                const title_h1 = document.createElement('h1')
+                title_h1.textContent = "레이아웃 js로"
+                header.appendChild(title_h1)
+
+                h_div.appendChild(header)
+
+                return h_div
+            },
+            // main
+            OnCB_Main() {
+                const main = document.createElement('main')
+                this.CSS.c_table(main)
+                this.CSS.c_f_scene(main)
+
+                const nav = document.createElement('nav')
+                this.CSS.nav(nav)
+                this.CSS.c_t_cell(nav)
+                nav.textContent = "nav"
+
+                const section = document.createElement('section')
+                this.CSS.section(section)
+                this.CSS.c_t_cell(section)
+                section.textContent = "section"
+
+                const aside = document.createElement('aside')
+                this.CSS.aside(aside)
+                this.CSS.c_t_cell(aside)
+                aside.textContent = "aside"
+
+                main.append(nav, section, aside)
+                return main
+            },
+            // footer.
+            OnCB_Footer() {
+                const f_div = document.createElement('div')
+                this.CSS.c_t_row(f_div)
+                this.CSS.c_t_width(f_div)
+
+                const footer = document.createElement('footer')
+                this.CSS.footer(footer)
+                this.CSS.c_t_cell(footer)
+                footer.textContent = "footer"
+
+                f_div.appendChild(footer)
+
+                return f_div
+            },
+            OnCreateBodyElement() {
+                
+                // body set.
+                // document.body.setAttribute('class', 'table h_scene')
+                this.CSS.c_table(document.body)
+                this.CSS.c_f_scene(document.body)
+
+                // header.
+                const header_div = this.OnCB_Header()
+                
+                // main
+                const main_div = this.OnCB_Main()
+                
+                // footer.
+                const footer_div = this.OnCB_Footer()
+
+                document.body.append(header_div, main_div, footer_div )
+            },
+            
+        }
+
+        Layout.OnInit()
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+        })
+    </script>
+</body>
+</html>

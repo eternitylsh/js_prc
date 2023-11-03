@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 여기서는 일단 css, js 사전템플릿없는 임시 템플릿으로.. 이유는 csstext적용이 이유. -->
+    <title>cssText</title>
+</head>
+<body>
+    <!-- <h1>CSS TEXT</h1> -->
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+
+            document.body.style.cssText = `\
+                display: flex;\
+                flex-direction: row;\
+                justify-content: left;\
+                flex-wrap: wrap;\
+            `
+
+            for( let i = 0; i < 10; i++) {
+                const div = document.createElement("div")
+                document.body.appendChild(div)
+                // div.textContent = "저는 테스트 중입니다."
+                // div.style.color = "orange"
+                // 이렇게 css 설정을 넣을 수 있음.
+                div.style.cssText = `\
+                    width: 100px;\
+                    height: 100px;\
+                    background-color: aqua;\
+                    margin: 5px;\
+                `
+            }
+
+            
+        })
+    </script>
+</body>
+</html>
