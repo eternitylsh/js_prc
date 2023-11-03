@@ -1,0 +1,56 @@
+
+html, body {
+    height: 100%;
+}
+
+header h1 {
+    border-bottom: 3px solid black;
+    padding: 25px;
+    
+    font-family: 'Hi Melody', cursive; 
+    font-size: 3em
+}
+
+button {
+    font-family: 'Orbit', sans-serif; 
+    width: 100px;
+}
+
+header {
+    height: 15%;
+}
+
+nav {
+    height: 8%;
+}
+
+content {
+    
+}
+
+footer {
+    height: 10%;
+}
+
+footer p {
+    text-align: center;
+}
+
+
+/*    class    */
+.h_scene { height: 100%; }
+.f_scene { width: 100%; height: 100%; }
+.t_width { width: 100%; }
+
+.table { display: table }
+.t_row { display: table-row }
+.t_cell {
+    display: table-cell;
+}
+
+.c_block { display: block; }
+.non_bline { 
+    box-sizing: border-box; 
+/*        calc( target - border-width/2 ) 이렇게 해도 됨.    */
+/*        다만.. /2 할경우 전부 적용해야함.    */
+}

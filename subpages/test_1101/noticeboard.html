@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <title>글작성게시판</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style type="text/css">
+        @import url("./css/reset.css");
+
+        :root {
+            --header-color:  burlywood;
+            --nav-color:     olivedrab;
+            --section-color: cornflowerblue;
+            --aside-color:   wheat;
+            --footer-color:  rgb(112, 110, 110);
+        }
+
+        .plistele { 
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* 보일지 말지 정하는 구역은 여기로.. */
+        /* 총 3군데 게시판 보드, 글작성 보드 등 */
+        #l_board {
+            display: block;
+        }
+
+        #postboard {
+            display: none;
+        }
+
+        #d_board {
+            display: none;
+        }
+
+        /* ====================================== */
+
+        #l_board .postlist {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .postele {
+            margin: 5px;
+        }
+
+        .detailele {
+            margin: 0.3rem;
+        }
+
+        .postright {
+            justify-items: right;
+        }
+
+        /* =========================================== */
+        #postboard #cp_title {
+
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
+            width: 100%;
+
+            margin: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        #postboard #cp_title input {
+            width: 80%;
+            font-size: 1.2rem;
+        }
+
+        #postboard #cp_inform textarea {
+            font-size: 1rem;
+        }
+
+        /* =========================================== */
+
+        #postboard #cp_creator {
+            display: flex;
+            justify-content: right;
+            flex-direction: row;
+        }
+
+
+        /* =========================================== */
+
+        header {
+            height: 12%;
+            background-color: var(--header-color);
+        }
+
+        nav #navmenu {
+            display: flex;
+            justify-content:left;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        nav #navmenu span a {
+            margin: 0.5rem;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav {
+            height: 5%;
+            background-color: var(--nav-color);
+        }
+
+        main {
+            display: table;
+            height: 100%;
+        }
+
+        main section {
+            width: 82%;
+            background-color: var(--section-color);
+        }
+
+        main aside {
+            width: 18%;
+            background-color: var(--aside-color);
+        }
+
+        footer {
+            height: 8%;
+            background-color: var(--footer-color);
+        }
+    </style>
+</head>
+<body class="table f_scene">
+    <div class="t_row t_width">
+        <header class="t_cell t_width">
+            <h1>게시판</h1>
+        </header>
+    </div>
+    <div class="t_row t_width">
+        <nav class="t_cell">
+            <div id="navmenu" class="t_width">
+                <span><a href="./home.html">홈</a></span>
+                <span><a href="#" id="toEditBoard">글 작성</a></span>
+            </div>
+        </nav>
+    </div>
+    <main class="t_width">
+        <section class="t_cell t_row">
+            <div class="t_row t_width">
+                <div id="h_main" class="t_cell">
+                    <div id="l_board">
+                        <ul>
+                        </ul>
+                    </div>
+
+                    <div id="postboard">
+                        <div id="cp_title">
+                            <label for="p_title">제목
+                                <input type="text" name="p_title" id="post_title" class="in_data">
+                            </label>
+                        </div>
+                        <div id="cp_creator">
+                            <label for="p_creator">작성자
+                                <input type="text" name="p_creator" id="post_creator" class="in_data">
+                            </label>
+                        </div>
+                        <div id="cp_date"><span class="in_data">2023/11/03</span></div>
+                        <div id="cp_inform">
+                            <label for="p_inform">
+                                <textarea name="p_inform" id="post_info" cols="50" rows="20" class="in_data"></textarea>
+                            </label>
+                        </div>
+                        
+                        <div id="cp_fileup">
+                            <label for="p_fileup">
+                                <input type="file" name="p_fileup" id="post_file" class="in_data">
+                            </label>
+                        </div>
+
+                        <div id="upload">
+                            <button type="button" id="upl_back">뒤로</button>
+                            <button type="button" id="reset">리셋</button>
+                            <button type="button" id="uploadbtn">올리기</button>
+                        </div>
+                    </div>
+
+                    <div id="d_board">
+                        <div id="d_edit" class="detailele">
+                            <button type="button" onclick="board.OnHomeboard()">뒤로</button>
+                            <button type="button">수정</button>
+                            <button type="button">삭제</button>
+                            <!-- 일단 그냥 삭제되도록;; -->
+                        </div>
+                        <div id="d_title" class="detailele">임시제목</div>
+                        <div id="d_creator" class="detailele">작성자</div>
+                        <div id="d_date" class="detailele">2023/11/01</div>
+                        <!-- 아래 임시내용은 테스트에서 문제없으면 삭제되는 내용. -->
+                        <div id="d_info" class="detailele">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quod quis ducimus qui temporibus debitis eum dolor! Fugiat expedita dicta, perspiciatis in aliquam nisi dolorum et quod accusamus rem numquam labore pariatur laborum qui commodi? Nemo eveniet provident minima fuga praesentium suscipit quibusdam corrupti, beatae eligendi qui exercitationem alias laboriosam deserunt, doloremque doloribus quasi sapiente accusamus dolore aperiam vel sit, dolorem libero iste? Eius nisi aut provident maxime magni harum dolor suscipit dignissimos asperiores. Architecto sequi adipisci excepturi voluptatibus, numquam aut totam quo animi in possimus ex doloribus, dicta harum fugiat tempora iusto veritatis facere distinctio nisi maiores vitae. Consequatur nulla aperiam quaerat totam vero saepe? Amet velit molestiae maiores beatae corporis possimus dignissimos autem? Modi ullam temporibus animi natus possimus quo eveniet quibusdam exercitationem. Eos exercitationem provident dolore architecto explicabo, sint cumque ut incidunt, minus et consectetur odio magnam voluptates in inventore ducimus autem obcaecati voluptatibus placeat animi nemo cupiditate quidem, veniam nam? Nesciunt corporis totam placeat voluptatem necessitatibus voluptas, quas doloremque, aliquam eligendi laboriosam ducimus? Inventore nihil soluta doloribus illum tenetur ad unde sed iusto. Beatae, laudantium hic! Earum perferendis ab dignissimos excepturi necessitatibus facere consequatur soluta, voluptas in quo dolorum! Enim rerum saepe unde deserunt laboriosam inventore.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <aside class="t_cell">aside</aside>
+    </main>
+    <div class="t_row t_width">
+        <footer class="t_cell">
+            footer
+        </footer>
+    </div>
+    <script type="text/javascript">
+        const board = {
+            bstate: {
+                l_board: document.querySelector('main #l_board'),
+                p_board: document.querySelector('main #postboard'),
+                d_board: document.querySelector('main #d_board'),
+            },
+            data: {
+                h_key: 'pdata-',
+                keys: ["num", "title", "creator", "date", "info", "file"],
+                t_idx: {
+                    date: 3,
+                    l_board_e: 1,
+                },
+                main_viewlen: 4,
+                now_date: '',
+                b_count: 0,
+            },
+            OnEditboard() { // 2번째 활성화
+                Object.values(this.bstate).forEach( _t => {
+                    if( this.bstate.p_board === _t )
+                        _t.style.display = 'block'
+                    else
+                        _t.style.display = 'none'
+                } )
+
+                this.OnEditboard_Init()
+            },
+
+            // Edit Init.
+            OnEditboard_Init() {
+                this.OnEditboard_Reset()
+
+                // 2: 들어가려는 데이터의 날짜 인덱스.(리셋대비;;)
+                this.bstate.p_board.querySelector('#cp_date span').innerHTML = this.GetNowDate()
+            },
+
+            // Edit func >> Reset func.
+            OnEditboard_Reset() {
+                const getDatas = this.bstate.p_board.getElementsByClassName('in_data')
+                
+                for( let i = 0; i < getDatas.length; i++)
+                    getDatas[i].value = ''
+            },
+
+            // 글 게시.
+            OnUploadBoard() {
+                const getDatas = this.bstate.p_board.getElementsByClassName('in_data')
+                console.log(getDatas)
+
+                const obj = { "num":`${this.data.b_count}` }
+                for( let i = 1; i < this.data.keys.length; i++ ) {
+                    if( this.data.t_idx.date !== i )
+                        obj[this.data.keys[i]] = getDatas[i - 1].value
+                    else // date
+                        obj[this.data.keys[i]] = getDatas[i - 1].innerHTML
+                }
+
+                const json_obj = JSON.stringify(obj)
+
+                console.log(json_obj)
+                window.localStorage.setItem( `${this.data.h_key}${this.data.b_count}`, json_obj )
+
+                this.data.b_count++
+            },
+
+            OnDetailboard(target) { // 3번째 활성화
+                //보이기
+                Object.values(this.bstate).forEach( _t => {
+                    if( this.bstate.d_board === _t )
+                        _t.style.display = 'block'
+                    else
+                        _t.style.display = 'none'
+                } )
+
+                // 보였으면.. 해당글 보이기
+                // 다만 보이게 할려면 해당 인덱스에 따라 로컬스토리지에서 가져와야함.
+                console.log(target)
+                this.OnDetailInfoView()
+            },
+            OnDetailInfoView() { // OnDetailboard 내부실행함수.
+
+            },
+            OnHomeboard() { // 1번째 활성화
+                Object.values(this.bstate).forEach( _t => {
+                    if( this.bstate.l_board === _t )
+                        _t.style.display = 'block'
+                    else
+                        _t.style.display = 'none'
+                } )
+
+                // 여기서도 리스트 띄우도록 실행해야..
+                this.OnBoardListLoad()
+            },
+            
+/*
+            <div id="l_board">
+                        <ul>
+                            추가할 내용은 아래 li 영역
+                            <li>
+                                <div class="postlist plistele">
+                                    <div class="postele">1</div>
+                                    <div class="postele">임시제목</div>
+                                    <div class="postele">작성자</div>
+                                    <div class="postele">2023/11/01</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+*/
+
+            OnBoardListLoad() {
+
+                const ul = this.bstate.l_board.querySelector('ul')
+                ul.innerHTML = ""
+                
+                for( let i = 0; i < window.localStorage.length; i++ ) {
+                    item = window.localStorage.getItem( `${board.data.h_key}${i}` )
+                    item = JSON.parse(item)
+
+                    ul.appendChild(this.OnCreateBoardList( item.num, item.title, item.creator, item.date ))
+                }
+            },
+
+            // 헤더 게시판 글 하나 그리기.
+            OnCreateBoardList( idx, title, creator, date ) {
+                const n_list = document.createElement('li')
+                const in_div = document.createElement('div')
+                in_div.classList.add("postlist", "plistele")
+
+                const d_arr = [ idx, title, creator, date ]
+
+                let item
+                for( let i = 0; i < board.data.main_viewlen; i++) {
+                    item = document.createElement('div')
+                    item.classList.add('postele')
+                    item.innerHTML = ( 0 === i ) ? +d_arr[i] + 1 : d_arr[i]
+                    in_div.appendChild(item)
+                }
+                n_list.appendChild(in_div)
+
+                // 이벤트 추가.
+                in_div.querySelectorAll('.postele')[this.data.t_idx.l_board_e].addEventListener('click', e => board.OnDetailboard(e.target))
+
+                return n_list
+            },
+
+            // 최근 날짜 데이터 얻기.
+            GetNowDate() {
+                const date = new Date()
+                return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+            },
+
+            // init.
+            OnInit() {
+                // 카운트 읽어서 초기화.
+                this.OnloadDataLength()
+
+                // 리스트 동기화.
+                this.OnBoardListLoad()
+
+                // 편집게시글 초기화.
+                this.OnEditboard_Init()
+
+                // 여기서 홈보드 콜은 실행안함. 이유는 그러지 않아도 자동으로 초기화 되기에..
+            },
+
+            // 초기화시 길이 받아오기.
+            OnloadDataLength() { this.data.b_count = window.localStorage.length },
+        }
+
+        // Init Events define.
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // board object init.
+            board.OnInit()
+
+
+            // board func init.
+            // nav 글 작성 이동 이벤트
+            const toEditBoard = document.querySelector('#navmenu #toEditBoard')
+            toEditBoard.addEventListener('click', () => board.OnEditboard())
+
+            // 뒤로 기능.
+            document.querySelector('#upload #upl_back').addEventListener('click', () => {
+                // 리셋을 실행시키고 보낸다.
+                board.OnEditboard_Init()
+                board.OnHomeboard()
+            })
+
+            // 리셋 기능
+            document.querySelector('#upload #reset').addEventListener('click', () => {
+                board.OnEditboard_Reset()
+            })
+
+            // 게시글 업로드 기능
+            document.querySelector('#upload #uploadbtn').addEventListener('click', () => {
+                // 업로드 이벤트.
+                board.OnUploadBoard() // 업로드 진행.
+                board.OnEditboard_Init() // 초기화.
+                board.OnHomeboard() // 메인게시판으로.
+            })
+
+
+        })
+
+        
+    </script>
+</body>
+</html>
+
+<!-- <div id="ex">
+                content
+            </div> -->
