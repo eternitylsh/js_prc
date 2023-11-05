@@ -81,6 +81,8 @@ section #todoarea #todo {
   width: 65%;
   font-size: 1.2rem;
 
+  background-color: transparent;
+
   border-width: 0px 0px 0.2rem 0px;
   border-color: darkgrey;
   outline: none;
