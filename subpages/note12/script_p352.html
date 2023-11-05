@@ -1,126 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>document</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <!--    <link rel="stylesheet" href="../css/init.css">-->
-    <link rel="stylesheet" href="./css/styles.css">
-    <style type="text/css">
-        
-    </style>
-</head>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style type="text/css"></style>
+  </head>
 
-<body class="table h_scene">
+  <body class="table h_scene">
     <header class="t_row">
-        <div class="t_cell">
-            <h1>할 일 목록</h1>
-        </div>
+      <div class="t_cell">
+        <h1>할 일 목록</h1>
+      </div>
     </header>
     <content class="t_row">
-        <div class="t_cell">
-            <div id="ex">
-                <input type="text" name="todo" id="todo">
-                <button id="add-button">추가하기</button>
-                <div id="list"></div>
-            </div>
+      <div class="t_cell">
+        <div id="ex">
+          <input type="text" name="todo" id="todo" />
+          <button id="add-button">추가하기</button>
+          <div id="list"></div>
         </div>
+      </div>
     </content>
     <footer class="t_row">
-       <div class="t_cell">
-        <hr>
+      <div class="t_cell">
+        <hr />
         <p>
-            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
+          <button
+            type="button"
+            onclick="location.href='../../index.html'"
+            value="홈으로"
+          >
+            HOME
+          </button>
         </p>
-       </div>
+      </div>
     </footer>
     <!-- 마크다운 문법적용을 위한 스크립트들 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/global.js"></script>
     <script type="text/javascript">
-        const op_html = document.querySelector('#ex')
+      const op_html = document.querySelector("#ex");
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const input = op_html.querySelector('#todo')
-            const addbtn = op_html.querySelector('#add-button')
-            const todolist = op_html.querySelector('#list')
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = op_html.querySelector("#todo");
+        const addbtn = op_html.querySelector("#add-button");
+        const todolist = op_html.querySelector("#list");
 
-            let keycount = 0
+        let keycount = 0;
 
-            const AddTodo = () => {
+        const AddTodo = () => {
+          if (0 < input.value.length) {
+            // console.log(`AddTodo가 실행됨`)
+            const item = document.createElement("div");
+            const checkbox = document.createElement("input");
+            const text = document.createElement("span");
+            const btn = document.createElement("button");
 
-                if ( 0 < input.value.length ) {
-                    // console.log(`AddTodo가 실행됨`)
-                    const item = document.createElement('div')
-                    const checkbox = document.createElement('input')
-                    const text = document.createElement('span')
-                    const btn = document.createElement('button')
+            const key = keycount;
+            keycount += 1;
 
-                    const key = keycount
-                    keycount += 1
+            item.setAttribute("data-key", key);
+            item.append(checkbox, text, btn);
+            todolist.appendChild(item);
 
-                    item.setAttribute( 'data-key', key )
-                    item.append( checkbox, text, btn )
-                    todolist.appendChild(item)
-                    
-                    checkbox.type = 'checkbox'
-                    checkbox.addEventListener('change', e => {
-                        checkedTodo(e)
-                    })
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", (e) => {
+              checkedTodo(e);
+            });
 
-                    const checkedTodo = e => {
+            const checkedTodo = (e) => {
+              if (e.target.checked) {
+                item.style.textDecoration = "line-through";
 
-                        if( e.target.checked ) {
-                            item.style.textDecoration = 'line-through'
+                const complete = document.createElement("span");
 
-                            const complete = document.createElement('span')
-                        
-                            complete.setAttribute( 'data-key', item.getAttribute('data-key') )
-                            complete.setAttribute('class', 'badge text-bg-success')
-                            complete.textContent = "완료"
-                            
-                            item.appendChild(complete)
-                        } else {
-                            item.style.textDecoration = ''
-                            
-                            const complete = todolist.querySelector(`span[data-key="${key}"]`)
-                            item.removeChild(complete)
-                        }                        
-                    }
+                complete.setAttribute(
+                  "data-key",
+                  item.getAttribute("data-key")
+                );
+                complete.setAttribute("class", "badge text-bg-success");
+                complete.textContent = "완료";
 
-                    
+                item.appendChild(complete);
+              } else {
+                item.style.textDecoration = "";
 
-                    text.textContent = input.value
-                    
-                    btn.textContent = "제거"
-                    btn.addEventListener('click', () => removeTodo(key))
-                    
-                    const removeTodo = key => {
-                        console.log(key)
-                        const t_item = todolist.querySelector(`[data-key="${key}"]`)
-                        todolist.removeChild(t_item)
-                    }
-                }
+                const complete = todolist.querySelector(
+                  `span[data-key="${key}"]`
+                );
+                item.removeChild(complete);
+              }
+            };
 
-                input.value = ''
-            }
+            text.textContent = input.value;
 
+            btn.textContent = "제거";
+            btn.addEventListener("click", () => removeTodo(key));
 
+            const removeTodo = (key) => {
+              console.log(key);
+              const t_item = todolist.querySelector(`[data-key="${key}"]`);
+              todolist.removeChild(t_item);
+            };
+          }
 
-            addbtn.addEventListener("click", AddTodo)
-            input.addEventListener("keyup", e => {
-                if( 'Enter' === e.key ) AddTodo()
-            })
-        })
+          input.value = "";
+        };
+
+        addbtn.addEventListener("click", AddTodo);
+        input.addEventListener("keyup", (e) => {
+          if ("Enter" === e.key) AddTodo();
+        });
+      });
     </script>
-</body>
-
+  </body>
 </html>
