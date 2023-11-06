@@ -1,0 +1,126 @@
+:root {
+    --header-color:  burlywood;
+    --nav-color:     olivedrab;
+    --section-color: cornflowerblue;
+    --aside-color:   wheat;
+    --footer-color:  rgb(112, 110, 110);
+}
+
+.plistele { 
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* 보일지 말지 정하는 구역은 여기로.. */
+/* 총 3군데 게시판 보드, 글작성 보드 등 */
+#l_board {
+    display: block;
+}
+
+#postboard {
+    display: none;
+}
+
+#d_board {
+    display: none;
+}
+
+/* ====================================== */
+
+#l_board .postlist {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.postele {
+    margin: 5px;
+}
+
+.detailele {
+    margin: 0.3rem;
+}
+
+.postright {
+    justify-items: right;
+}
+
+/* =========================================== */
+#postboard #cp_title {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+    width: 100%;
+
+    margin: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#postboard #cp_title input {
+    width: 80%;
+    font-size: 1.2rem;
+}
+
+#postboard #cp_inform textarea {
+    font-size: 1rem;
+}
+
+/* =========================================== */
+
+#postboard #cp_creator {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+}
+
+
+/* =========================================== */
+
+header {
+    height: 12%;
+    background-color: var(--header-color);
+}
+
+nav #navmenu {
+    display: flex;
+    justify-content:left;
+    align-items: center;
+
+    height: 100%;
+}
+
+nav #navmenu span a {
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    height: 5%;
+    background-color: var(--nav-color);
+}
+
+main {
+    display: table;
+    height: 100%;
+}
+
+main section {
+    width: 82%;
+    background-color: var(--section-color);
+}
+
+main aside {
+    width: 18%;
+    background-color: var(--aside-color);
+}
+
+footer {
+    height: 8%;
+    background-color: var(--footer-color);
+}
