@@ -97,7 +97,7 @@ const board = {
         d_info.textContent = d_item.info
     },
     OnModifyBoard() {
-        
+        // 얘 작성.
     },
     OnRemoveBoard() {
         // delete..
