@@ -17,6 +17,7 @@ const board = {
     },
     control: {
         now_board: -1,
+        is_mod: false,
     },
     OnEditboard() { // 2번째 활성화
         Object.values(this.bstate).forEach( _t => {
@@ -47,10 +48,18 @@ const board = {
 
     // 글 게시.
     OnUploadBoard() {
-        const getDatas = this.bstate.p_board.getElementsByClassName('in_data')
-        console.log(getDatas)
 
-        const obj = { "num":`${this.data.b_count}` }
+        if(  this.control.is_mod ) {
+            if(-1 === this.control.now_board ) {
+                console.error( `can\'t load board idx.. ${this.control.now_board}` )
+                this.control.is_mod = false
+                return -1
+            }
+        }
+
+        const getDatas = this.bstate.p_board.getElementsByClassName('in_data')
+
+        const obj = this.control.is_mod ? { "num":`${this.control.now_board}` } : { "num":`${this.data.b_count}` }
         for( let i = 1; i < this.data.keys.length; i++ ) {
             if( this.data.t_idx.date !== i )
                 obj[this.data.keys[i]] = getDatas[i - 1].value
@@ -60,10 +69,14 @@ const board = {
 
         const json_obj = JSON.stringify(obj)
 
-        console.log(json_obj)
-        window.localStorage.setItem( `${this.data.h_key}${this.data.b_count}`, json_obj )
+        if( this.control.is_mod ) {
 
-        this.data.b_count++
+            window.localStorage.setItem( `${this.data.h_key}${this.control.now_board}`, json_obj )
+            this.control.is_mod = false
+        } else {
+            window.localStorage.setItem( `${this.data.h_key}${this.data.b_count}`, json_obj )
+            this.data.b_count++
+        }
     },
 
     OnDetailboard(target) { // 3번째 활성화
@@ -89,15 +102,49 @@ const board = {
 
         // read json.
         let d_item = window.localStorage.getItem( `${board.data.h_key}${board.control.now_board}` )
-        d_item = JSON.parse(d_item)
-        
+
+        try {
+            d_item = JSON.parse(d_item)
+        } catch (e) {
+            console.error(e)
+            // re init.
+            board.control.now_board = -1
+            this.OnHomeboard()
+            return false
+        }
+
         d_title.textContent = d_item.title
         d_creator.textContent = d_item.creator
         d_date.textContent = d_item.date
         d_info.textContent = d_item.info
+
+        return true
     },
     OnModifyBoard() {
-        // 얘 작성.
+        const ed_title = this.bstate.p_board.querySelector('#post_title')
+        const ed_creator = this.bstate.p_board.querySelector('#post_creator')
+        const ed_info = this.bstate.p_board.querySelector('#post_info')
+
+        // 편집화면으로 이동.
+        this.OnEditboard()
+
+        // 불러오기.
+        let d_item = window.localStorage.getItem( `${board.data.h_key}${board.control.now_board}` )
+        try {
+            d_item = JSON.parse(d_item)
+        } catch (e) {
+            console.error(e)
+            // re init.
+            board.control.now_board = -1
+            this.OnHomeboard()
+            return false
+        }
+
+        ed_title.value = d_item.title
+        ed_creator.value = d_item.creator
+        ed_info.value = d_item.info
+        
+        this.control.is_mod = true
     },
     OnRemoveBoard() {
         // delete..
@@ -208,5 +255,23 @@ document.addEventListener('DOMContentLoaded', () => {
         board.OnHomeboard() // 메인게시판으로.
     })
 
+    // detail board addevent.
+    
+    // btn three.
+    const d_board = board.bstate.d_board
 
+    const d_btns = d_board.querySelectorAll('#d_edit button')
+
+    // 각기 다른 이벤트라 어쩔수 없이;;
+    d_btns[0].addEventListener('click', () => {
+        board.OnHomeboard()
+    })
+
+    d_btns[1].addEventListener('click', () => {
+        board.OnModifyBoard()
+    })
+
+    d_btns[2].addEventListener('click', () => {
+        board.OnRemoveBoard()
+    })
 })
