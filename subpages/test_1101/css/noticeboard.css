@@ -117,7 +117,9 @@ main section {
 
 main aside {
     width: 18%;
-    background-color: var(--aside-color);
+    background-image: url('../res/ad.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 footer {

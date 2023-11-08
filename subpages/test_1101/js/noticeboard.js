@@ -9,6 +9,7 @@ const board = {
         keys: ["num", "title", "creator", "date", "info", "file"],
         t_idx: {
             date: 3,
+            file: this.data.keys.length - 1,
             l_board_e: 1,
         },
         main_viewlen: 4,
@@ -61,11 +62,22 @@ const board = {
 
         const obj = this.control.is_mod ? { "num":`${this.control.now_board}` } : { "num":`${this.data.b_count}` }
         for( let i = 1; i < this.data.keys.length; i++ ) {
-            if( this.data.t_idx.date !== i )
-                obj[this.data.keys[i]] = getDatas[i - 1].value
-            else // date
-                obj[this.data.keys[i]] = getDatas[i - 1].innerHTML
-        }
+            
+            // 파일 실질적인 업로드 파트
+            if( this.data.t_idx.file === i ) {
+                try {
+                    const file = obj[this.data.keys[i]].files[0]
+                    // const reader = ...
+                    
+                }catch(e) {
+                    console.error(e)
+                }
+                
+                continue
+            }
+            
+            obj[this.data.keys[i]] = ( this.data.t_idx.date !== i ) ? getDatas[i - 1].value : getDatas[i - 1].innerHTML
+        }        
 
         const json_obj = JSON.stringify(obj)
 
