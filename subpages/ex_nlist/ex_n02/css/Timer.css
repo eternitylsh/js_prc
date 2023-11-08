@@ -1,0 +1,30 @@
+#ex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 950px;
+}
+
+#ex button {
+    width: 10rem;
+    height: 5rem;
+
+    margin: 1rem 3rem;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#ex #lamps {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#ex #menu {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 5rem;
+}
