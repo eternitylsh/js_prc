@@ -5,10 +5,14 @@ const Lamps = {
     turn: ['off', 'on'],
 
     OnLampSwitch (obj, idx) {
-        const _idx = idx - 1
-        const n_flag = !this.flags[Number(_idx)] 
+        const n_flag = !this.flags[Number(idx)] 
         obj.src = `./res/lamp_${this.turn[Number(n_flag)]}.png`
-        this.flags[Number(_idx)] = n_flag
+        this.flags[Number(idx)] = n_flag
+    },
+
+    OnLampInit(obj, idx) {
+        this.flags[idx] = false
+        obj.src = `./res/lamp_${this.turn[Number( this.flags[idx] )]}.png`
     },
 }
 
@@ -17,31 +21,47 @@ const Lamp_architect = {
     lamps: document.querySelectorAll('#lamps img'),
     t_ids: [null, null, null, null],
     t_count: 0,
-    timer_func: [
-        function () { this.OnLamp(t_count); this.t_count++ },
-        function () { this.OnLamp(t_count); this.t_count++ },
-        function () { this.OnLamp(t_count); this.t_count++ },
-        function () { this.OnLamp(t_count); }, // last
-    ],
-    OnStart (e) {
-        // 0 에서 부터 시작.
-        this.t_ids[this.t_count] = window.setTimeout(1000, this.timer_func[this.t_count])
-    },
-    OnStop (e) {
-        this.t_ids.forEach( e_id => {
-            window.clearTimeout( e_id )
-        });
-
-        this.OnInit()
-    },
-    OnInit (e) {
-        this.t_count = 0
-        this.t_ids = this.t_ids.fill(null)
-    },
 
     OnLamp (idx) {
+        console.log( this.lamps[idx] )
         Lamps.OnLampSwitch(this.lamps[idx], idx)
-    }
+    },
+
+    OnLampTrigger () {
+        const la = Lamp_architect // 별칭용.
+        la.OnLamp(la.t_count)
+        la.t_count++
+
+        if( la.t_ids.length > la.t_count )
+            la.t_ids[la.t_count] = window.setTimeout(la.OnLampTrigger, 1000)
+    },
+
+    OnLampInit() {
+        for( let i = 0; i < this.lamps.length; i++ )
+            Lamps.OnLampInit( this.lamps[i], i)
+    },
+
+    // 아래 이벤트 호출함수. 전역으로 보고..
+    OnStart (e) {
+        // 0 에서 부터 시작.
+        const la = Lamp_architect // 별칭용.
+        
+        la.t_ids[la.t_count] = window.setTimeout(la.OnLampTrigger, 1000)
+    },
+    OnStop (e) {
+        Lamp_architect.t_ids.forEach( e_id => {
+            if( null !== e_id )
+                window.clearTimeout( e_id )
+        });
+
+        Lamp_architect.OnInit()
+    },
+    OnInit (e) {
+        const la = Lamp_architect // 별칭용.
+        la.t_count = 0
+        la.t_ids = la.t_ids.fill(null)
+        la.OnLampInit()
+    },
 }
 
 

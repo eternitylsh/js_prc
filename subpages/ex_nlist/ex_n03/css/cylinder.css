@@ -1,0 +1,63 @@
+
+#ex button {
+    width: 10rem;
+    height: 5rem;
+
+    margin: 1rem 3rem;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#cylinder .s_box {
+    border: 1px solid black;
+}
+
+#cylinder {
+    display: flex;
+    justify-content: center;
+}
+
+#cylinder #sbox {
+    width: 25rem;
+    height: 8rem;
+    position: relative;
+}
+
+#cylinder #sbox1 {
+    position: relative;
+    left: 5rem;
+
+    /* transition: transform 1s linear ; */
+}
+
+/* css로 애니메이션 보단 javascript로.. */
+/* #cylinder #sbox1:active {
+    transform: translateX(15rem);
+} */
+
+#cylinder #row {
+    width: 20rem;
+    height: 2rem;
+
+    position: absolute;
+    top: calc(4rem - 2rem / 2);
+    left: 2rem;
+
+    background-color: gray;
+}
+
+#cylinder #col {
+    width: 2rem;
+    height: 8rem;
+
+    position: absolute;
+    background-color: gray;
+}
+
+#ex #menu {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 5rem;
+}
