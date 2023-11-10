@@ -36,11 +36,16 @@
                     </div>
                 </div>
                 <div id="menu">
-                    <div id="count">
-                        <label for="icount">
-                            <input type="number" name="icount" id="" min="-2">
+                    <div id="config">
+                        <label for="icount">반복횟수
+                            <input type="number" name="icount" id="" min="-1" placeholder="1">
                         </label>
-                        
+                        <label for="icount">전진전 딜레이(ms)
+                            <input type="number" name="fdelay" id="" min="0" value="0">
+                        </label>
+                        <label for="icount">후진전 딜레이(ms)
+                            <input type="number" name="adelay" id="" min="0" value="0" >
+                        </label>
                     </div>
                     <div id="btns">
                         <button id="start" type="button">시작</button>

@@ -56,9 +56,23 @@
     margin-top: 5rem;
 }
 
-#ex #menu #count {
+#ex #menu #config {
     display: flex;
     justify-content: center;
+
+    font-size: 2rem;
+}
+
+#ex #menu #config input {
+    width: 10rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+
+#ex #menu #config label {
+    margin: 1rem;
 }
 
 #ex #menu #btns {
