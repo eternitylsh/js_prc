@@ -27,14 +27,7 @@
 #cylinder #sbox1 {
     position: relative;
     left: 5rem;
-
-    /* transition: transform 1s linear ; */
 }
-
-/* css로 애니메이션 보단 javascript로.. */
-/* #cylinder #sbox1:active {
-    transform: translateX(15rem);
-} */
 
 #cylinder #row {
     width: 20rem;
@@ -58,6 +51,17 @@
 #ex #menu {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
     margin-top: 5rem;
+}
+
+#ex #menu #count {
+    display: flex;
+    justify-content: center;
+}
+
+#ex #menu #btns {
+    display: flex;
+    justify-content: center;
 }

@@ -15,7 +15,6 @@ const cylinder = {
     },
     play_obj: null,
     OnPlay() {
-        cylinder.ani.timing.iterations = 1
         this.play_obj = this.active_obj.animate(this.ani.tumbling, this.ani.timing)
         this.play_obj.play()
     },
@@ -29,6 +28,7 @@ const cylinder = {
             return -1;
         }
 
+        console.log(cylinder.ani.timing)
         this.OnPlay()
     },
     OnStop() {
@@ -40,10 +40,13 @@ const cylinder = {
 
 document.addEventListener('DOMContentLoaded', () => {
     const menu = document.querySelector('#menu')
+    const id_btns = menu.querySelector('#btns')
+    const icount = menu.querySelector('#count input')
+
     const btns = {
-        start: menu.querySelector('#start'),
-        con_start: menu.querySelector('#cstart'),
-        stop: menu.querySelector('#stop')
+        start: id_btns.querySelector('#start'),
+        con_start: id_btns.querySelector('#cstart'),
+        stop: id_btns.querySelector('#stop')
     }
 
     btns.start.addEventListener('click', () => {
@@ -51,7 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } )
 
     btns.con_start.addEventListener('click', () => {
-        
+        const _c = icount.value
+
+        if ( 0 < icount.value.length )
+            cylinder.OnCon_Play(Number(_c))
     } )
 
     btns.stop.addEventListener('click', () => {
