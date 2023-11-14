@@ -17,43 +17,54 @@
     </style>
 </head>
 
-<body class="table h_scene">
-    <header class="t_row">
+<body class="table f_scene">
+    <header class="t_row w_scene">
         <div class="t_cell">
             <h1>실린더 예시</h1>
         </div>
     </header>
-    <content class="t_row">
-        <div class="t_cell">
-            <div id="ex">
-                <div id="cylinder">
-                    <div id="sbox" class="s_box">
-                        <!-- 실린더 작동애니메이션 타겟은 여기. -->
-                        <div id="sbox1">
-                            <div id="row" class="s_box"></div>
-                            <div id="col" class="s_box"></div>
-                        </div>
+    <content class="table">
+        <div id="ex" class="t_cell">
+            <div id="cylinder">
+                <div class="cy_id">
+                    <span>A</span>
+                </div>
+                <div class="sboxline sbox">
+                    <!-- 실린더 작동애니메이션 타겟은 여기. -->
+                    <div id="sbox1">
+                        <div class="sboxline row"></div>
+                        <div class="sboxline col"></div>
                     </div>
                 </div>
-                <div id="menu">
-                    <div id="config">
-                        <label for="icount">반복횟수
-                            <input type="number" name="icount" id="" min="-1" placeholder="1">
-                        </label>
-                        <label for="icount">전진전 딜레이(ms)
-                            <input type="number" name="fdelay" id="" min="0" value="0">
-                        </label>
-                        <label for="icount">후진전 딜레이(ms)
-                            <input type="number" name="adelay" id="" min="0" value="0" >
-                        </label>
-                    </div>
-                    <div id="btns">
-                        <button id="start" type="button">시작</button>
-                        <button id="cstart" type="button">연속시작</button>
-                        <button id="stop" type="button">정지</button>
-                    </div>
-                    
+            </div>
+            <div id="menu">
+                <div id="config">
+                    <label for="icount">반복횟수
+                        <input type="number" name="icount" id="" min="-1" placeholder="1">
+                    </label>
+                    <label for="icount">전진전 딜레이(ms)
+                        <input type="number" name="fdelay" id="" min="0" value="0">
+                    </label>
+                    <label for="icount">후진전 딜레이(ms)
+                        <input type="number" name="adelay" id="" min="0" value="0" >
+                    </label>
                 </div>
+                <div id="btns">
+                    <button id="start" type="button">시작</button>
+                    <button id="cstart" type="button">연속시작</button>
+                    <button id="stop" type="button">정지</button>
+                </div>
+                
+            </div>
+        </div>
+        <div id="aside" class="t_cell">
+            <div id="timer">
+                <span>진행 시간 : </span>
+                <span>00:00:00</span>
+            </div>
+            <div id="count">
+                <span>진행 횟수 : </span>
+                <span>0</span>
             </div>
         </div>
     </content>
@@ -70,6 +81,9 @@
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     <!-- <script src="./js/global.js"></script> -->
     <script src="./js/cylinder.js"></script>
+    <script src="./js/Timer.js"></script>
+    <script src="./js/CountI.js"></script>
+    <script src="./js/interface.js"></script>
     <script type="text/javascript">
         
     </script>

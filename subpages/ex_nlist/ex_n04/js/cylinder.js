@@ -126,7 +126,5 @@ const cylinder = {
     OnAniInit() {
         this.play_obj = this.active_obj.animate(this.ani.tumbling, this.ani.timing)
         this.play_obj.pause()
-    },
-
-    GetNCount() { return this.loop.n_count },
+    }
 }

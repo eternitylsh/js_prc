@@ -23,12 +23,8 @@ header {
     height: 15%;
 }
 
-content #ex {
-    width: 80%;
-}
-
-content #aside {
-    width: 20%;
+content {
+    
 }
 
 footer {
@@ -41,8 +37,7 @@ footer p {
 
 
 /*    class    */
-.h_scene { height: 100%; }
-.w_scene { width: 100%;}
+.h_scene { width: 100%; }
 .f_scene { width: 100%; height: 100%; }
 .table { display: table }
 .t_row { display: table-row }
