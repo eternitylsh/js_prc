@@ -9,8 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <!--    <link rel="stylesheet" href="../css/init.css">-->
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/Interface.css">
+    <link rel="stylesheet" href="./css/t_c_if.css">
     <link rel="stylesheet" href="./css/cylinder.css">
     <style type="text/css">
         
@@ -23,13 +26,14 @@
             <h1>실린더 예시</h1>
         </div>
     </header>
-    <content class="table">
-        <div id="ex" class="t_cell">
+    <content class="table f_scene">
+        <div id="ex" class="t_cell f_scene">
             <div id="cylinder">
                 <div class="cy_id">
                     <span>A</span>
                 </div>
                 <div class="sboxline sbox">
+                    
                     <!-- 실린더 작동애니메이션 타겟은 여기. -->
                     <div id="sbox1">
                         <div class="sboxline row"></div>
@@ -39,13 +43,14 @@
             </div>
             <div id="menu">
                 <div id="config">
-                    <label for="icount">반복횟수
+                    <label for="icount">
+                        <span>반복횟수</span>
                         <input type="number" name="icount" id="" min="-1" placeholder="1">
                     </label>
-                    <label for="icount">전진전 딜레이(ms)
+                    <label for="icount" title="전진 전에 지정하는 딜레이">B 딜레이(ms)
                         <input type="number" name="fdelay" id="" min="0" value="0">
                     </label>
-                    <label for="icount">후진전 딜레이(ms)
+                    <label for="icount" title="전진 후에 지정하는 딜레이">A 딜레이(ms)
                         <input type="number" name="adelay" id="" min="0" value="0" >
                     </label>
                 </div>
@@ -57,15 +62,19 @@
                 
             </div>
         </div>
-        <div id="aside" class="t_cell">
-            <div id="timer">
-                <span>진행 시간 : </span>
-                <span>00:00:00</span>
+        <div id="aside" class="t_cell f_scene">
+            <div class="cy_nav">
+                <p>A 실린더</p>
+                <div class="timer">
+                    <p> - 대기 시간 - </p>
+                    <p>00:00:00</p>
+                </div>
+                <div class="count">
+                    <p> - 진행 횟수 - </p>
+                    <p>0</p>
+                </div>
             </div>
-            <div id="count">
-                <span>진행 횟수 : </span>
-                <span>0</span>
-            </div>
+            
         </div>
     </content>
     <footer class="t_row">

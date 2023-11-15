@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const id_btns = menu.querySelector('#btns')
     const sets = menu.querySelectorAll('#config input')
 
+    // interface init.
+    const I_Init = () => {
+        Timer.OnInit('.timer p')
+        CountI.OnInit('.count p')
+    }
+
     const btns = {
         start: id_btns.querySelector('#start'),
         con_start: id_btns.querySelector('#cstart'),
@@ -17,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cylinder.OnSetConfig([sets[1].value, sets[2].value])
         }
         
-        cylinder.OnPlay()
+        cylinder.OnPlay(CountI.OnCountView, Timer)
     } )
 
     btns.con_start.addEventListener('click', () => {
@@ -31,10 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if ( 0 < _c.length )
-            cylinder.OnCon_Play(Number(_c))
+            cylinder.OnCon_Play(Number(_c), CountI.OnCountView, Timer)
     } )
 
     btns.stop.addEventListener('click', () => {
         cylinder.OnStop()
     } )
+
+
+    // play..
+    I_Init()
 })

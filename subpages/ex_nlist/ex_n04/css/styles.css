@@ -24,8 +24,16 @@ header {
 }
 
 content {
-    
+    table-layout: fixed;
 }
+
+content #ex {
+    width: 80%;
+}
+
+/* content #aside {
+    width: 100%;
+} */
 
 footer {
     height: 10%;
@@ -37,7 +45,8 @@ footer p {
 
 
 /*    class    */
-.h_scene { width: 100%; }
+.h_scene { height: 100%; }
+.w_scene { width: 100%;}
 .f_scene { width: 100%; height: 100%; }
 .table { display: table }
 .t_row { display: table-row }

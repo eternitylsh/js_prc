@@ -9,6 +9,12 @@ const Timer = {
         sec: 0,
         min: 0,
     },
+    Timer() {
+        this.OnInit('')
+    },
+    Timer(__objid) {
+        this.OnInit(__objid)
+    },
     OnInit(__obj) {
         const __objarea = op_aside.querySelectorAll(__obj)
         this.obj = __objarea[__objarea.length - 1]

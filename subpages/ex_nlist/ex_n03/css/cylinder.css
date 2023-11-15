@@ -1,13 +1,13 @@
+#cylinder .cy_id {
+    position: relative;
+    left: -1.5rem;
+    top: -2.5rem;
+    z-index: 2;
 
-#ex button {
-    width: 10rem;
-    height: 5rem;
-
-    margin: 1rem 3rem;
-
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 5rem;
 }
+
 
 #cylinder .sboxline {
     border: 1px solid black;
@@ -48,34 +48,3 @@
     background-color: gray;
 }
 
-#ex #menu {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    margin-top: 5rem;
-}
-
-#ex #menu #config {
-    display: flex;
-    justify-content: center;
-
-    font-size: 2rem;
-}
-
-#ex #menu #config input {
-    width: 10rem;
-    font-size: 2rem;
-    text-align: center;
-}
-
-
-
-#ex #menu #config label {
-    margin: 1rem;
-}
-
-#ex #menu #btns {
-    display: flex;
-    justify-content: center;
-}

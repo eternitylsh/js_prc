@@ -23,13 +23,17 @@ header {
     height: 15%;
 }
 
+content {
+    table-layout: fixed;
+}
+
 content #ex {
     width: 80%;
 }
 
-content #aside {
-    width: 20%;
-}
+/* content #aside {
+    width: 100%;
+} */
 
 footer {
     height: 10%;
