@@ -1,0 +1,46 @@
+content {
+    position: relative;
+}
+
+content .tankrori {
+    position: absolute;
+    left: 8rem;
+    top: 2.5rem;
+}
+
+.tankrori .tank {
+    overflow: hidden;
+
+    width: 20rem;
+    height: 30rem;
+    border: 3px solid black;
+}
+
+.water {
+    position: absolute;
+
+    left: -50px;
+}
+
+.wave {
+    top: 100px;
+    position: relative;
+}
+
+@keyframes move {
+	0% {left: -106px;}
+    50% { left: 0px; }
+    100% {left: -106px;}
+}
+
+.wave img {
+    top: -10px;
+    z-index: -1;
+}
+
+.wave .move img {
+    z-index: -2;
+    position: absolute;
+    left: -106px;
+    animation: move 5s linear 0s infinite normal;
+}
