@@ -7,7 +7,7 @@ const OnInit = () => {
         document.querySelector('.tank .wave'),
         document.querySelector('.tank .water')
     ])
-    
+    W_control.OnInit()
 }
 
 document.addEventListener('DOMContentLoaded', () => {

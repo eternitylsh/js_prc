@@ -1,7 +1,3 @@
-
-
-// OnWaterMove에서 찰때는 0px, 바닥일때는 350px로 보자.
-
 const Water = {
     objs: [
         // 0: wave.
@@ -20,6 +16,7 @@ const Water = {
         timing: {
             duration: 1000,
             iterations: 1,
+            easing: "ease-out",
             fill: "forwards",
         },
     },
