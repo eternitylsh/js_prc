@@ -1,0 +1,76 @@
+.uis {
+    left: 512px;
+    position: relative;
+    width: 27rem;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.uis .uis_e {
+    margin: 0.5rem;
+
+    width: 12rem;
+    height: 12rem;
+}
+
+.uis #redlamp {
+    background-image: url('../res/toff_redlight.png');
+    background-size: cover;
+}
+
+.uis .motor {
+    background-image: url('../res/motor.png');
+    background-size: cover;
+
+    position: relative;
+}
+
+.uis_e .m_active {
+    /* display: none; */
+    background-image: url('../res/motor_thunder.png');
+    background-size: cover;
+
+    left: 5rem;
+
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+
+    animation: t_move 0.75s ease-in-out 0s infinite normal;
+}
+
+@keyframes t_move {
+	0% {left: 5rem; top: -1rem; }
+    50% { left: 4.5rem; top: 0.5rem; }
+    100% {left: 5rem; top: -1rem; }
+}
+
+.uis #sound {
+    background-image: url('../res/non_sound.png');
+    background-size: cover;
+}
+
+.aside {
+    width: 17%;
+    position: relative;
+
+    left: 512px;
+}
+
+#undermenu button {
+    width: 10rem;
+    height: 5rem;
+
+    margin: 1rem 3rem;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#undermenu #btns {
+    display: flex;
+    justify-content: center;
+}

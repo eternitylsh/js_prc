@@ -29,6 +29,9 @@ header {
 }
 
 content {
+    display: flex;
+    flex-direction: row;
+
     height: 60%;
 }
 
@@ -41,7 +44,7 @@ footer {
 }
 
 footer p {
-    text-align: center;
+    text-align: center; 
 }
 
 

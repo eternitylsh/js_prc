@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/interface.css">
     <link rel="stylesheet" href="./css/WaterTank.css">
 </head>
 <body>
@@ -24,11 +25,43 @@
                 <div class="water"></div>
             </div>
         </div>
-        
-        
+        <div class="uis">
+            <div class="uis_e motor">
+                <div class="m_active"></div>
+            </div>
+            <div class="uis_e" id="redlamp"></div>
+            <div class="uis_e motor">
+                <div class="m_active"></div>
+            </div>
+            <div class="uis_e" id="sound"></div>
+        </div>
+        <div class="aside">
+            <div>
+                <p>현재 수량</p>
+                <p>50L</p>
+            </div>
+            <div>
+                <p>현재 수위</p>
+                <p>300m</p>
+            </div>
+            <div>
+                <p>물조절 속도</p>
+                <p>15m/s</p>
+            </div>
+            <div>
+                <p>현 상황</p>
+                <p>저수위</p>
+            </div>
+        </div>
     </content>
     <div id="undermenu">
         <hr>
+        <div id="btns">
+            <button id="start" type="button">가동</button>
+            <button id="in_water" type="button">물채우기</button>
+            <button id="out_water" type="button">물빼기</button>
+            <button id="stop" type="button">정지</button>
+        </div>
     </div>
     <footer>
         <hr>
@@ -40,6 +73,7 @@
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     <script src="./js/water.js"></script>
     <script src="./js/w_control.js"></script>
+    <script src="./js/interface.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
