@@ -29,7 +29,7 @@
 }
 
 .uis_e .m_active {
-    /* display: none; */
+    display: none;
     background-image: url('../res/motor_thunder.png');
     background-size: cover;
 
