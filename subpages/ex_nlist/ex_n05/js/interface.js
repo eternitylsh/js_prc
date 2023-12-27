@@ -88,6 +88,11 @@ const If_Manager = {
             time: 1000,
             state: false,
         },
+        Booser: {
+            loopid: null,
+            time: 2000,
+            state: false,
+        }
     },
     OnInit() {
         motor1.OnInit('.motor')
@@ -96,17 +101,76 @@ const If_Manager = {
         Booser.OnInit('#sound')
     },
 
-    
+    // motor1, motor2, booser! 2sec
+    OnLowAct() {
+        this.AllInit()
+
+        motor1.OnPlay()
+        motor2.OnPlay()
+        this.OnBooser()
+    },
+
+    // motor1, Lamp 1sec
+    OnMidAct() {
+        this.AllInit()
+
+        motor1.OnPlay()
+        this.OnOSLL()
+    },
+
+    // OnLamp.
+    OnHighAct() {
+        this.AllInit()
+
+        Lamp.OnLight()
+    },
+
+
+    // 일단 모두 정지.
+    AllInit() {
+        motor1.OnStop()
+        motor2.OnStop()
+        Lamp.OffLight()
+
+        this.OnBooserStop()
+        this.OnOSLLStop()
+    },
 
     // On One Sec Lamp Loop.
     OnOSLL() {
         this.ids.Lamp.loopid = setInterval( () => {
+            this.ids.Lamp.state = !this.ids.Lamp.state
             if ( this.ids.Lamp.state )
                 Lamp.OnLight()
             else
                 Lamp.OffLight()
-
-            this.ids.Lamp.state = !this.ids.Lamp.state
         }, this.ids.Lamp.time )
+    },
+
+    OnOSLLStop() {
+        if( null !== this.ids.Lamp.loopid ) {
+            clearInterval( this.ids.Lamp.loopid)
+            this.ids.Lamp.loopid = null
+            Lamp.OffLight()
+        }
+    },
+
+    // On Two Sec Booser Loop.
+    OnBooser() {
+        this.ids.Booser.loopid = setInterval( () => {
+            this.ids.Booser.state = !this.ids.Booser.state
+            if ( this.ids.Booser.state )
+                Booser.OnAct()
+            else
+                Booser.OnNoneAct()
+        }, this.ids.Booser.time )
+    },
+
+    OnBooserStop() {
+        if( null !== this.ids.Booser.loopid ) {
+            clearInterval( this.ids.Booser.loopid)
+            this.ids.Booser.loopid = null
+            Booser.OnNoneAct()
+        }
     },
 }
