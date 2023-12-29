@@ -10,7 +10,7 @@ const W_control = {
         max: 0,
         min: 350,
         n_height: 0, // %단위.
-        ch_amount: 0, // 1frame당 변화할 양.
+        ch_amount: 0, // 1frame당 변화할 양. (%기준..)
         base_decrease: -1,
     },
     loop: {
@@ -30,6 +30,7 @@ const W_control = {
             'high',
         ],
         wnow: 'high',
+        wschange: true,
         wcd: [
             10,
             50,
@@ -104,7 +105,7 @@ const W_control = {
 
                 // 갱신.
                 // 늘 이렇게.
-                this.height.ch_amount = base_decrease
+                this.height.ch_amount = this.height.base_decrease
 
                 let target = null
                 for( let i = this.states.warr.length - 1; 0 <= i; i-- ) {
@@ -136,7 +137,12 @@ const W_control = {
 
     // state update.
     OnSetWstateUpdate( __state ) { // 0: low, 1:mid, 2:high로..
-        this.states.wnow = this.states.warr[__state]
+        // for if_manage event
+        const nval = this.states.warr[__state]
+        if( this.states.wnow !== nval )
+            this.states.wschange = true
+
+        this.states.wnow = nval
     },
 
     OnSetSpeed(__s) { // 짧을수록 빨라짐.
@@ -148,24 +154,35 @@ const W_control = {
         return ( this.height.min - (hper * __p) )
     },
 
+    // __t : this.height.ch_amount // 즉, 변화할 %양을 넣음.
+    // min - max 인 이유: 윈도우 룰 처럼 위가 수치가 낮고, 아래가 수치가 높기에..
+    GetPerHeightForSpeed( __t ) {
+        return ((this.height.min - this.height.max) - this.GetTargetHeight(__t) ) * (1000 / this.loop.d)
+    },
+
     // interface / nav Update.
     OnIF_Update() {
         // interface
-        if( 'low' === this.states.wnow ) {
-            If_Manager.OnLowAct()
+        // 아래 실행문은 한 번만 실행되어야 하는데;;;
+        if( this.states.wschange ) {
+            if( 'low' === this.states.wnow ) 
+                If_Manager.OnLowAct()
+    
+            if( 'mid' === this.states.wnow ) 
+                If_Manager.OnMidAct()
+            
+            if( 'high' === this.states.wnow ) 
+                If_Manager.OnHighAct()
+            
+            this.states.wschange = false
         }
-
-        if( 'mid' === this.states.wnow ) {
-            If_Manager.OnMidAct()
-        }
-
-        if( 'high' === this.states.wnow ) {
-            If_Manager.OnHighAct()
-        }
+        
 
         // nav.
-        Wamount.OnUpdate(this.height.n_height)
-        Wheight.OnUpdate(this.height.n_height)
-        WSpeed.OnUpdate()
+        nav.WamountUpdate(this.height.n_height)
+        nav.WheightUpdate(this.height.n_height)
+        // this.GetTargetHeight(this.height.ch_amount) * 1 / this.loop.d
+        nav.WspeedUpdate( this.GetPerHeightForSpeed(this.height.ch_amount) )
+        nav.WstateUpdate( this.states.warr.indexOf(this.states.wnow) )
     }
 }

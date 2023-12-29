@@ -100,7 +100,7 @@ const Wstate = {
 
     OnUpdate(__data) {
         // 이 3가지 뿐.. 그래서 0: 저, 1: 중, 2: 고; 로 받아야함.
-        this.display.innerText = `${state[__data]}`
+        this.display.innerText = `${this.state[__data]}`
     },
 }
 
@@ -113,19 +113,19 @@ const nav = {
     },
 
     WamountUpdate( __data ) {
-        
+        Wamount.OnUpdate(__data)
     },
 
     WheightUpdate( __data ) {
-
+        Wheight.OnUpdate(__data)
     },
 
     WspeedUpdate( __data ) {
-
+        WSpeed.OnUpdate( __data )
     },
 
     // __data << 0, 1, 2
     WstateUpdate( __data ) {
-
+        Wstate.OnUpdate( __data )
     },
 }

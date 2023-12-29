@@ -62,8 +62,8 @@ const StopBtn = {
 const UnderMenu = {
     OnInit() {
         StartBtn.OnInit('#start')
-        StartBtn.OnInit('#mact')
-        StartBtn.OnInit('#non_mact')
-        StartBtn.OnInit('#stop')
+        W_ActBtn.OnInit('#mact')
+        W_NonactBtn.OnInit('#non_mact')
+        StopBtn.OnInit('#stop')
     },
 }
