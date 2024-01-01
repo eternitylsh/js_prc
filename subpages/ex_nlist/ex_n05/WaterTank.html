@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/interface.css">
-    <link rel="stylesheet" href="./css/WaterTank.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Orbit&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/interface.css" />
+    <link rel="stylesheet" href="./css/WaterTank.css" />
+  </head>
+  <body>
     <header>
-        <h1>물 탱크로리 시뮬레이션</h1>
+      <h1>물 탱크로리 시뮬레이션</h1>
     </header>
     <content>
-        <div class="tankrori">
-            <div class="tank">
-                <div class="wave">
-                    <div class="move"></div>
-                    <div class="fix"></div>
-                </div>
-                <div class="water"></div>
-            </div>
+      <div class="tankrori">
+        <div class="tank">
+          <div class="wave">
+            <div class="move"></div>
+            <div class="fix"></div>
+          </div>
+          <div class="water"></div>
         </div>
-        <div class="uis">
-            <div class="uis_e motor">
-                <div class="m_active"></div>
-            </div>
-            <div class="uis_e" id="redlamp"></div>
-            <div class="uis_e motor">
-                <div class="m_active"></div>
-            </div>
-            <div class="uis_e" id="sound"></div>
+      </div>
+      <div class="uis">
+        <div class="uis_e motor">
+          <div class="m_active"></div>
         </div>
-        <div class="aside">
-            <div id="wamount">
-                <p>현재 수량</p>
-                <p>50L</p>
-            </div>
-            <div id="wheight">
-                <p>현재 수위</p>
-                <p>300m</p>
-            </div>
-            <div id="wspeed">
-                <p>물조절 속도</p>
-                <p>15m/s</p>
-            </div>
-            <div id="wstate">
-                <p>현 상황</p>
-                <p>저수위</p>
-            </div>
+        <div class="uis_e" id="redlamp"></div>
+        <div class="uis_e motor">
+          <div class="m_active"></div>
         </div>
+        <div class="uis_e" id="sound"></div>
+      </div>
+      <div class="aside">
+        <div id="wamount">
+          <p>현재 수량</p>
+          <p>50L</p>
+        </div>
+        <div id="wheight">
+          <p>현재 수위</p>
+          <p>300m</p>
+        </div>
+        <div id="wspeed">
+          <p>물조절 속도</p>
+          <p>15m/s</p>
+        </div>
+        <div id="wstate">
+          <p>현 상황</p>
+          <p>저수위</p>
+        </div>
+        <div id="spcon">
+          <label for="wspin">
+            반응시간(ms)
+            <input type="number" name="wspin" id="wspinput" placeholder="500" />
+          </label>
+        </div>
+      </div>
     </content>
     <div id="undermenu">
-        <hr>
-        <div id="btns">
-            <button id="start" type="button">가동</button>
-            <button id="mact" type="button">물관리모드</button>
-            <button id="non_mact" type="button">물감시모드</button>
-            <button id="stop" type="button">정지</button>
-        </div>
+      <hr />
+      <div id="btns">
+        <button id="start" type="button">가동</button>
+        <button id="mact" type="button">물관리모드</button>
+        <button id="non_mact" type="button">물감시모드</button>
+        <button id="stop" type="button">정지</button>
+      </div>
     </div>
     <footer>
-        <hr>
-        <p>
-            <button type="button" onclick="location.href='../../index.html'" value="홈으로" >HOME</button>
-        </p>
+      <hr />
+      <p>
+        <button
+          type="button"
+          onclick="location.href='../../index.html'"
+          value="홈으로"
+        >
+          HOME
+        </button>
+      </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
@@ -77,5 +92,5 @@
     <script src="./js/interface.js"></script>
     <script src="./js/w_control.js"></script>
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>
