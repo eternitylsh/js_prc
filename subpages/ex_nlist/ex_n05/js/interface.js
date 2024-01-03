@@ -105,6 +105,7 @@ const If_Manager = {
     this.AllInit();
 
     if ("play" === W_control.GetOnWControlState()) {
+      console.log("low state motor 1,2 play.")
       motor1.OnPlay();
       motor2.OnPlay();
     }

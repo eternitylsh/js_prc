@@ -67,8 +67,9 @@ const W_control = {
     this.OnWaterMoveUpdate();
   },
 
-  // 상태 받아오기.
+  // 외부에서 현 실행상태 받아오기.
   GetOnWControlState() {
+    console.log(this.states.now)
     return this.states.now;
   },
 
